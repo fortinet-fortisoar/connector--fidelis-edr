@@ -74,18 +74,15 @@ class Fidelis(object):
             raise ConnectorError(str(err))
 
     def get_authorisation_token(self):
-        try:
-            url = 'authenticate?Username=' + self.username + '&Password=' + self.password
-            b64_credential = base64.b64encode((self.username + ":" + self.password).encode('utf-8')).decode()
-            headers = {'Authorization': "Basic " + b64_credential, 'Content-Type': 'application/json'}
-            response = self.make_api_call(endpoint=url, headers=headers, login_flag=True)
-            if response.get('data'):
-                return response.get('data').get('token')
-            else:
-                logger.exception(str(response))
-                raise ConnectorError(str(response.get('error', '')))
-        except Exception as err:
-            raise ConnectorError(str(err))
+        url = 'authenticate?Username=' + self.username + '&Password=' + self.password
+        b64_credential = base64.b64encode((self.username + ":" + self.password).encode('utf-8')).decode()
+        headers = {'Authorization': "Basic " + b64_credential, 'Content-Type': 'application/json'}
+        response = self.make_api_call(endpoint=url, headers=headers, login_flag=True)
+        if response.get('data'):
+            return response.get('data').get('token')
+        else:
+            logger.exception(str(response))
+            raise ConnectorError(str(response.get('error', '')))
 
 
 def _check_health(config):

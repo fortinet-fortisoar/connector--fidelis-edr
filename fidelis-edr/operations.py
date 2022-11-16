@@ -1,14 +1,16 @@
 """ Copyright start
-  Copyright (C) 2008 - 2020 Fortinet Inc.
+  Copyright (C) 2008 - 2022 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
 
-import validators, requests, json
-import base64
+import requests, json
+import base64, os
+from connectors.cyops_utilities.builtins import  upload_file_to_cyops
+from django.conf import settings
 from connectors.core.connector import get_logger, ConnectorError
 
-logger = get_logger('fidelis')
+logger = get_logger('fidelis-edr')
 
 error_msgs = {
     400: 'Bad/Invalid Request',
@@ -20,25 +22,42 @@ error_msgs = {
 }
 
 
+def str_to_list_for_stings(input_str):
+    if isinstance(input_str, str) and len(input_str) > 0:
+        return [x.strip() for x in input_str.split(',')]
+    elif isinstance(input_str, list):
+        return input_str
+    elif isinstance(input_str, int):
+        return [input_str]
+    else:
+        return []
+
+
 class Fidelis(object):
     def __init__(self, config):
-        self.server_url = config.get('server', '')
-        if not self.server_url.startswith('https://'):
+        self.server_url = config.get('server', '').strip('/')
+        if not self.server_url.startswith('https://') and not self.server_url.startswith('http://'):
             self.server_url = 'https://' + self.server_url
-        if not self.server_url.endswith('/'):
-            self.server_url += '/'
         self.username = config.get('username')
         self.password = config.get('password')
         self.verify_ssl = config.get('verify_ssl')
 
-    def make_api_call(self, endpoint=None, method='GET', data=None, params=None):
+    def make_api_call(self, endpoint=None, method='GET', data=None, params=None, headers=None, login_flag=False):
         try:
-            url = self.server_url + 'endpoint/api/' + endpoint
-            token = self.get_authorisation_token()
-            headers = {'Authorization': "bearer " + token, 'Content-Type': 'application/json'}
+            url = self.server_url + '/endpoint/api/' + endpoint
+            if not login_flag:
+                token = self.get_authorisation_token()
+            if not headers:
+                headers = {'Authorization': "bearer " + token, 'Content-Type': 'application/json'}
             response = requests.request(method, url, params=params, data=data, headers=headers, verify=self.verify_ssl)
             if response.ok:
-                return response.json()
+                if 'json' in response.headers.get('Content-Type'):
+                    return response.json()
+                elif response.headers.get('Content-Type') == 'application/octet-stream':
+                    file_name = response.headers.get('content-disposition').split('filename=')[-1]
+                    return response.content, file_name
+                else:
+                    return response.content
             else:
                 logger.error(response.text)
                 raise ConnectorError({'status_code': response.status_code, 'message': response.reason})
@@ -55,21 +74,21 @@ class Fidelis(object):
             raise ConnectorError(str(err))
 
     def get_authorisation_token(self):
-        try:
-            url = self.server_url + 'endpoint/api/authenticate?Username=' + self.username + '&Password=' + self.password
-            b64_credential = base64.b64encode((self.username + ":" + self.password).encode('utf-8')).decode()
-            headers = {'Authorization': "Basic " + b64_credential, 'Content-Type': 'application/json'}
-            response = requests.request('GET', url, headers=headers, verify=self.verify_ssl)
-            return json.loads(response.content)['data']['token']
-        except Exception as err:
-            logger.exception(str(err))
-            raise ConnectorError(str(err))
+        url = 'authenticate?Username=' + self.username + '&Password=' + self.password
+        b64_credential = base64.b64encode((self.username + ":" + self.password).encode('utf-8')).decode()
+        headers = {'Authorization': "Basic " + b64_credential, 'Content-Type': 'application/json'}
+        response = self.make_api_call(endpoint=url, headers=headers, login_flag=True)
+        if response.get('data'):
+            return response.get('data').get('token')
+        else:
+            logger.exception(str(response))
+            raise ConnectorError(str(response.get('error', '')))
 
 
-def _check_health(config, params):
+def _check_health(config):
     fa = Fidelis(config)
     try:
-        response = fa.get_alerts(config, params)
+        response = fa.get_authorisation_token()
         if response:
             logger.info('connector available')
             return True
@@ -86,7 +105,6 @@ def get_alerts(config, params):
     fa = Fidelis(config)
     endpoint = 'alerts/getalertsV2'
     params = get_params(params)
-    # return fa.make_api_call(endpoint='alerts/getalertsV2', params=params)
     return fa.make_api_call(endpoint=endpoint, params=params)
 
 
@@ -99,7 +117,7 @@ def get_endpoints(config, params):
 
 def get_endpoints_by_name(config, params):
     fa = Fidelis(config)
-    data = [params.get('nameArray')]
+    data = str_to_list_for_stings(params.get('nameArray'))
     return fa.make_api_call(endpoint='endpoints/endpointidsbyname', method='POST', data=json.dumps(data))
 
 
@@ -116,11 +134,15 @@ def get_playbooks(config, params):
 
 def get_playbooks_scripts(config, params):
     fa = Fidelis(config)
-    endpoint = 'playbooks/PlaybooksAndScripts?' + 'filterType=' + str(
-        params.get('filterType')) + '&platformFilter=' + str(
-        params.get('platformFilter')) + '&sort=' + str(params.get('sort')) + '&skip=' + str(
-        params.get('skip')) + '&take=' + str(params.get('take'))
-    return fa.make_api_call(endpoint=endpoint)
+    endpoint = 'playbooks/PlaybooksAndScripts'
+    param_dict = {
+        'filterType': '1' if params.get('filterType') == '1 - Playbooks' else '0',
+        'platformFilter': params.get('platformFilter'),
+        'sort': params.get('sort', ''),
+        'take': params.get('take', '')
+    }
+    param_dict = {k: v for k, v in param_dict.items() if v is not None and v != '' and v != []}
+    return fa.make_api_call(endpoint=endpoint, params=param_dict)
 
 
 def get_playbooks_detail(config, params):
@@ -143,8 +165,15 @@ def get_script_packages(config, params):
 
 def get_script_packages_file(config, params):
     fa = Fidelis(config)
-    params = get_params(params)
-    return fa.make_api_call(endpoint='packages/' + params.get('scriptID') + "?type=File")
+    response, file_name = fa.make_api_call(endpoint='packages/' + params.get('scriptID') + "?type=File")
+    if response:
+        path = os.path.join(settings.TMP_FILE_ROOT, file_name)
+        logger.debug("Path: {0}".format(path))
+        with open(path, 'wb') as fp:
+            fp.write(response)
+        attach_response = upload_file_to_cyops(file_path=file_name, filename=file_name,
+                                               name=file_name, create_attachment=True)
+        return attach_response
 
 
 def get_script_packages_manifest(config, params):
@@ -167,8 +196,13 @@ def get_script_packages_template(config, params):
 
 def execute_script_package(config, params):
     fa = Fidelis(config)
-    data = get_params(params)
-    params = get_params(params)
+    data = {
+        'timeoutInSeconds': params.get('timeoutInSeconds'),
+        'scriptPackageId': params.get('scriptPackageId'),
+        'hosts': str_to_list_for_stings(params.get('hosts')),
+        'integrationOutputs': str_to_list_for_stings(params.get('integrationOutputs')),
+        'questions': params.get('questions', {})
+    }
     return fa.make_api_call(endpoint='packages/' + params.get('scriptPackageId') + '/execute', method='POST',
                             data=json.dumps(data))
 
@@ -181,8 +215,12 @@ def script_job_results(config, params):
 
 def create_task(config, params):
     fa = Fidelis(config)
-    params = get_params(params)
-    return fa.make_api_call(endpoint='jobs/createTask', params=params)
+    body = {
+        "packageId": params.get('packageId'),
+        "endpoints": str_to_list_for_stings(params.get('endpoints')),
+        "isPlaybook": 'true' if params.get('isplaybook') == 'Playbook' else 'false'
+    }
+    return fa.make_api_call(endpoint='jobs/createTask', method='POST', data=json.dumps(body))
 
 
 operations = {

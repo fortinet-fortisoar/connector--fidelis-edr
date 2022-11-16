@@ -295,7 +295,7 @@
       "description": "Delete an endpoint by endpoint ID from the Fidelis Endpoint EDR",
       "enabled": true,
       "category": "investigation",
-      "annotation": "get_schema",
+      "annotation": "delete_endpoint",
       "output_schema": {
       },
       "parameters": [
@@ -604,7 +604,7 @@
       "description": "Get a list of all script packages from the Fidelis Endpoint EDR server",
       "enabled": true,
       "category": "investigation",
-      "annotation": "get_schema",
+      "annotation": "get_script_packages",
       "output_schema": {
         "success": "",
         "error": "",
@@ -772,7 +772,7 @@
       "description": "Get Script Package Template from the Fidelis Endpoint EDR server based on script ID you have provided.",
       "enabled": true,
       "category": "investigation",
-      "annotation": "get_schema",
+      "annotation": "get_script_packages_template",
       "output_schema": {
         "success": "",
         "error": "",
@@ -877,11 +877,18 @@
           "title": "Questions",
           "type": "json",
           "name": "questions",
-          "description": "",
-          "tooltip": "",
+          "description": "Enter key value pair of question data.e.g. {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
+          "tooltip": "Enter key value pair of question data.e.g. {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
           "required": false,
           "editable": true,
-          "visible": true
+          "visible": true,
+          "value": {
+            "paramNumber": 1,
+            "question": "Type",
+            "answer": "",
+            "isOptional": "false",
+            "inputType": "text"
+          }
         }
       ]
     },

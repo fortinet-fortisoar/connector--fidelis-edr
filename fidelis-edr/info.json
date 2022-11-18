@@ -128,11 +128,11 @@
           "visible": true
         },
         {
-          "title": "Start Index",
+          "title": "Offset",
           "type": "integer",
           "name": "skip",
-          "description": "Index of the starting row returned. Defaults to 0.",
-          "tooltip": "Index of the starting row returned. Defaults to 0.",
+          "description": "Helpful if you want to get a subset of items. Default to 0",
+          "tooltip": "Helpful if you want to get a subset of items. Default to 0.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -231,11 +231,11 @@
       },
       "parameters": [
         {
-          "title": "State Index",
+          "title": "Offset",
           "type": "integer",
           "name": "startIndex",
-          "description": "Index of the starting row returned. Defaults to 0.",
-          "tooltip": "Index of the starting row returned. Defaults to 0.",
+          "description": "Helpful if you want to get a subset of items. Default to 0",
+          "tooltip": "Helpful if you want to get a subset of items. Default to 0",
           "required": true,
           "editable": true,
           "visible": true,
@@ -391,7 +391,7 @@
       },
       "parameters": [
         {
-          "title": "Filter Type",
+          "title": "Type",
           "type": "select",
           "options": [
             "0 - Script Packages",
@@ -406,7 +406,7 @@
           "value": "0 - Script Packages"
         },
         {
-          "title": "OS Platform Filter",
+          "title": "OS Platform",
           "type": "select",
           "options": [
             "All",
@@ -423,7 +423,7 @@
           "value": "All"
         },
         {
-          "title": "Sort Data",
+          "title": "Sorting Order",
           "type": "text",
           "name": "sort",
           "description": "Sorts (ascending, descending) the result before applying take and skip. e.g name ascending",
@@ -444,11 +444,11 @@
           "visible": true
         },
         {
-          "title": "Start Index",
+          "title": "Offset",
           "type": "integer",
           "name": "skip",
-          "description": "Enables you skip returning the first x number of entities in the result index. Default to 0",
-          "tooltip": "Enables you skip returning the first x number of entities in the result index. Default to 0",
+          "description": "Helpful if you want to get a subset of items. Default to 0",
+          "tooltip": "Helpful if you want to get a subset of items. Default to 0",
           "required": false,
           "editable": true,
           "visible": true
@@ -625,11 +625,87 @@
     {
       "operation": "get_script_packages_file",
       "title": "Get Script Packages File",
-      "description": "Get script packages file from the Fidelis Endpoint EDR server based on script ID you have provided.",
+      "description": "Get script packages file from the Fidelis Endpoint EDR server based on script ID you have provided and attach that file to the attachment module.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_script_packages_file",
-      "output_schema": {},
+      "output_schema": {
+        "id": "",
+        "@id": "",
+        "file": {
+          "id": "",
+          "@id": "",
+          "size": "",
+          "uuid": "",
+          "@type": "",
+          "assignee": "",
+          "filename": "",
+          "metadata": [
+          ],
+          "mimeType": "",
+          "thumbnail": "",
+          "uploadDate": ""
+        },
+        "name": "",
+        "type": "",
+        "uuid": "",
+        "@type": "",
+        "tasks": [
+        ],
+        "alerts": [
+        ],
+        "assets": [
+        ],
+        "owners": [
+        ],
+        "people": [
+        ],
+        "@context": "",
+        "assignee": "",
+        "comments": [
+        ],
+        "warrooms": [
+        ],
+        "incidents": [
+        ],
+        "createDate": "",
+        "createUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "indicators": [
+        ],
+        "modifyDate": "",
+        "modifyUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "recordTags": [
+        ],
+        "userOwners": [
+        ],
+        "description": ""
+      },
       "parameters": [
         {
           "title": "Script Package ID",

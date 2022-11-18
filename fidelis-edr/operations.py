@@ -21,6 +21,13 @@ error_msgs = {
     503: 'Service Unavailable'
 }
 
+PLATFORM_FILTER = {
+    "All": 0,
+    "Windows": 1,
+    "Mac": 2,
+    "Linux": 3
+}
+
 
 def str_to_list_for_stings(input_str):
     if isinstance(input_str, str) and len(input_str) > 0:
@@ -136,10 +143,12 @@ def get_playbooks_scripts(config, params):
     fa = Fidelis(config)
     endpoint = 'playbooks/PlaybooksAndScripts'
     param_dict = {
-        'filterType': '1' if params.get('filterType') == '1 - Playbooks' else '0',
-        'platformFilter': params.get('platformFilter'),
+        'filterType': 1 if params.get('filterType') == '1 - Playbooks' else 0,
+        'platformFilter': PLATFORM_FILTER.get(params.get('platformFilter'), 0),
         'sort': params.get('sort', ''),
-        'take': params.get('take', '')
+        'take': params.get('take', ''),
+        'skip': params.get('skip', ''),
+        'isManagementRequest': True
     }
     param_dict = {k: v for k, v in param_dict.items() if v is not None and v != '' and v != []}
     return fa.make_api_call(endpoint=endpoint, params=param_dict)

@@ -143,13 +143,18 @@ def get_playbooks_scripts(config, params):
     fa = Fidelis(config)
     endpoint = 'playbooks/PlaybooksAndScripts'
     param_dict = {
-        'filterType': 1 if params.get('filterType') == '1 - Playbooks' else 0,
         'platformFilter': PLATFORM_FILTER.get(params.get('platformFilter'), 0),
         'sort': params.get('sort', ''),
         'take': params.get('take', ''),
         'skip': params.get('skip', ''),
         'isManagementRequest': True
     }
+    if params.get('filterType') == '1 - Playbooks':
+        param_dict['filterType'] = 1
+    elif params.get('filterType') == '2 - Script Packages':
+        param_dict['filterType'] = 2
+    else:
+        param_dict['filterType'] = 0
     param_dict = {k: v for k, v in param_dict.items() if v is not None and v != '' and v != []}
     return fa.make_api_call(endpoint=endpoint, params=param_dict)
 

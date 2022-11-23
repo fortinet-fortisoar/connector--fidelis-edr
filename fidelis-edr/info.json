@@ -9,14 +9,14 @@
   "category": "Endpoint Protection",
   "icon_small_name": "fidelis_small.png",
   "icon_large_name": "fidelis_large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/fidelis-edr/445/fidelis-edr-v1-0-0",
   "configuration": {
     "fields": [
       {
         "title": "Server URL",
         "type": "text",
         "name": "server",
-        "description": "URL/IP address of the Fidelis EDR server to which you will connect and perform automated operations.",
+        "description": "Specify the URL or IP address of the Fidelis EDR server to which you will connect and perform automated operations.",
         "tooltip": "URL of the Fidelis EDR server to which you will connect and perform automated operations.",
         "required": true,
         "editable": true,
@@ -26,7 +26,7 @@
         "title": "Username",
         "type": "text",
         "name": "username",
-        "description": "Username that is configured for your account for using the Fidelis EDR.",
+        "description": "Specify the username that is configured for your account to access the Fidelis EDR server to which you will connect and perform automated operations.",
         "tooltip": "Username that is configured for your account for using the Fidelis server.",
         "required": true,
         "editable": true,
@@ -36,7 +36,7 @@
         "title": "Password",
         "type": "password",
         "name": "password",
-        "description": "Password that is configured for your account for using the Fidelis EDR server.",
+        "description": "Specify the password that is configured for your account to access the Fidelis EDR server to which you will connect and perform automated operations.",
         "tooltip": "Password that is configured for your account for using the Fidelis EDR server.",
         "required": true,
         "editable": true,
@@ -59,7 +59,7 @@
     {
       "operation": "get_alerts",
       "title": "Get Alerts",
-      "description": "Get list of alerts from Fidelis based on input parameters you have provided.",
+      "description": "Retrieves a list of all alerts or specific alerts from Fidelis EDR based on the input parameters you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_alerts",
@@ -101,7 +101,7 @@
           "title": "Search String",
           "type": "text",
           "name": "facetSearch",
-          "description": "A filter applied on results of the get operation. Defaults to empty string ",
+          "description": "Specify a filter that you want to apply to the results of this operation. By default, this is set to an \"empty\" string",
           "tooltip": "A filter applied on results of the get operation. Defaults to empty string ",
           "required": false,
           "editable": true,
@@ -111,7 +111,7 @@
           "title": "Start Date",
           "type": "datetime",
           "name": "startDate",
-          "description": "The start of the time range of returned values.",
+          "description": "Select the start time of the time range from when you want to retrieve alerts from Fidelis Endpoint EDR.",
           "tooltip": "The start of the time range of returned values.",
           "required": false,
           "editable": true,
@@ -121,7 +121,7 @@
           "title": "End Date",
           "type": "datetime",
           "name": "endDate",
-          "description": "The end of the time range of returned values.",
+          "description": "Select the end time of the time range till when you want to retrieve alerts from Fidelis Endpoint EDR.",
           "tooltip": "The end of the time range of returned values.",
           "required": false,
           "editable": true,
@@ -131,7 +131,7 @@
           "title": "Offset",
           "type": "integer",
           "name": "skip",
-          "description": "Helpful if you want to get a subset of items. Default to 0",
+          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say alerts starting from the 10th alert. By default, this is set as \"0\".",
           "tooltip": "Helpful if you want to get a subset of items. Default to 0.",
           "required": false,
           "editable": true,
@@ -142,7 +142,7 @@
           "title": "Limit",
           "type": "integer",
           "name": "take",
-          "description": "Limits the number of alerts returned. Defaults to all.",
+          "description": "Specify the maximum number of alerts that you want this operation to return in the response.By default, this is set to \"all\" alerts.",
           "tooltip": "Limit the number of alerts to return in response",
           "required": false,
           "editable": true,
@@ -153,7 +153,7 @@
           "type": "text",
           "name": "sort",
           "placeholder": "e.g CreatedDate Descending",
-          "description": "Sorts the result before applying take and skip. Defaults to \"CreatedDate Descending\". Can be any property name of the alert object.",
+          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"CreatedDate Descending\". You can specify the name of any property of the alert object.",
           "tooltip": "Sorts the result before applying take and skip. Defaults to \"CreatedDate Descending\". Can be any property name of the alert object.",
           "required": false,
           "editable": true,
@@ -164,7 +164,7 @@
     {
       "operation": "get_endpoints",
       "title": "Get Endpoints",
-      "description": "Retrieve information about endpoints from the Fidelis Endpoint EDR server.",
+      "description": "Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_endpoints",
@@ -234,7 +234,7 @@
           "title": "Offset",
           "type": "integer",
           "name": "startIndex",
-          "description": "Helpful if you want to get a subset of items. Default to 0",
+          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say endpoints starting from the 10th endpoint. By default, this is set as \"0\".",
           "tooltip": "Helpful if you want to get a subset of items. Default to 0",
           "required": true,
           "editable": true,
@@ -245,7 +245,7 @@
           "title": "Limit",
           "type": "integer",
           "name": "count",
-          "description": "The number of endpoints to return in response",
+          "description": "Specify the maximum number of endpoints that you want this operation to return in the response.",
           "tooltip": "The number of endpoints to return in response",
           "required": true,
           "editable": true,
@@ -255,7 +255,7 @@
           "title": "Sort",
           "type": "text",
           "name": "sort",
-          "description": "Sorts the result before applying limit and offset. Examples: hostname, hostname descending, createdDate, createdDate descending.",
+          "description": "Specify the property name (and optionally the order) to sort the results retrieved by this operation, before applying the limit and offset. Examples of properties that can be specified are hostname, hostname descending, createdDate, createdDate descending, etc.",
           "tooltip": "Sorts the result before applying limit and offset. Examples: hostname, hostname descending, createdDate, createdDate descending.",
           "required": true,
           "editable": true,
@@ -266,22 +266,21 @@
     {
       "operation": "get_endpoints_by_name",
       "title": "Get Endpoint By Name",
-      "description": "Get ID of an endpoints based on endpoint names you have provided from the Fidelis Endpoint EDR server",
+      "description": "Retrieves theIDs of specific endpoints from Fidelis EDR based on the endpoint names you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_endpoints_by_name",
       "output_schema": {
         "success": "",
         "error": "",
-        "data": [
-        ]
+        "data": []
       },
       "parameters": [
         {
           "title": "Endpoint Names",
           "type": "text",
           "name": "nameArray",
-          "description": "Enter the endpoint names in csv or in list format",
+          "description": "Specify the names of the endpoints in the \"CSV\" or \"List\" format whose IDs you want to retrieve from Fidelis EDR.",
           "tooltip": "Enter the endpoint names in csv or in list format",
           "required": true,
           "editable": true,
@@ -292,18 +291,20 @@
     {
       "operation": "delete_endpoint",
       "title": "Delete Endpoint",
-      "description": "Delete an endpoint by endpoint ID from the Fidelis Endpoint EDR",
+      "description": "Deletes specific endpoints from Fidelis EDR based on the endpoint IDs you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "delete_endpoint",
       "output_schema": {
+        "error": "",
+        "success": ""
       },
       "parameters": [
         {
           "title": "Endpoint IDs",
           "type": "text",
           "name": "endpointID",
-          "description": "Enter the endpoint IDs in csv or in list format",
+          "description": "Specify the IDs of the endpoints in the \"CSV\" or \"List\" format that you want to delete from Fidelis EDR.",
           "tooltip": "Enter the endpoint IDs in csv or in list format",
           "required": true,
           "editable": true,
@@ -314,7 +315,7 @@
     {
       "operation": "get_playbooks",
       "title": "Get Playbooks",
-      "description": "Get list of playbooks and its details from the Fidelis Endpoint EDR server",
+      "description": "Retrieves a list of playbooks and their details from Fidelis EDR.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_playbooks",
@@ -344,7 +345,7 @@
           "title": "Limit Playbooks",
           "type": "text",
           "name": "take",
-          "description": "Enter Number of items to return in response",
+          "description": "Specify the maximum number of playbooks that you want this operation to return in the response.",
           "tooltip": "Enter Number of items to return in response",
           "required": true,
           "editable": true,
@@ -356,7 +357,7 @@
     {
       "operation": "get_playbooks_scripts",
       "title": "Get Playbooks And Scripts",
-      "description": "Get details of Fidelis Playbooks and Scripts from the Fidelis Endpoint EDR server",
+      "description": "Retrieves details of all Fidelis playbooks and scripts or specific Fidelis playbooks and scripts from the Fidelis EDR based on the input parameters you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_playbooks_scripts",
@@ -394,16 +395,16 @@
           "title": "Type",
           "type": "select",
           "options": [
-            "0 - Script Packages",
-            "1 - Playbooks"
+            "1 - Playbooks",
+            "2 - Script Packages"
           ],
           "name": "filterType",
-          "description": "Enables you to filter between script packages and playbooks. Default is Script Packages",
-          "tooltip": "Enables you to filter between script packages and playbooks. Default is Script Packages",
+          "description": "Select whether you want to retrieve script packages or playbooks from Fidelis EDR. By default, this is set as \"2 - Script Packages\".",
+          "tooltip": "Enables you to filter between script packages and playbooks. Default it returns all values.",
           "required": false,
           "editable": true,
           "visible": true,
-          "value": "0 - Script Packages"
+          "value": "2 - Script Packages"
         },
         {
           "title": "OS Platform",
@@ -415,7 +416,7 @@
             "Linux"
           ],
           "name": "platformFilter",
-          "description": "Enables you to choose between All, Windows, Mac, Linux.",
+          "description": "Select the OS Platform for which you want to retrieve script packages or playbooks from Fidelis EDR. You can choose between All, Windows, Mac, or Linux.",
           "tooltip": "Enables you to choose between All, Windows, Mac, Linux.",
           "required": false,
           "editable": true,
@@ -426,7 +427,7 @@
           "title": "Sorting Order",
           "type": "text",
           "name": "sort",
-          "description": "Sorts (ascending, descending) the result before applying take and skip. e.g name ascending",
+          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"name ascending\".",
           "tooltip": "Sorts (ascending, descending) the result before applying take and skip. e.g name ascending",
           "required": false,
           "editable": true,
@@ -437,7 +438,7 @@
           "title": "Limit",
           "type": "integer",
           "name": "take",
-          "description": "Limits the number of results returned. Defaults to all results.",
+          "description": "Specify the maximum number of alerts that you want this operation to return in the response. By default, this is set to \"all\" playbooks or scripts",
           "tooltip": "Limits the number of results returned. Defaults to all results.",
           "required": false,
           "editable": true,
@@ -447,7 +448,7 @@
           "title": "Offset",
           "type": "integer",
           "name": "skip",
-          "description": "Helpful if you want to get a subset of items. Default to 0",
+          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say playbooks or scripts starting from the 10th playbook or script. By default, this is set as \"0\".",
           "tooltip": "Helpful if you want to get a subset of items. Default to 0",
           "required": false,
           "editable": true,
@@ -458,7 +459,7 @@
     {
       "operation": "get_playbooks_detail",
       "title": "Get Playbooks Details",
-      "description": "Get playbook details by playbook ID the Fidelis Endpoint EDR server",
+      "description": "Retrieves details for a specific playbook from Fidelis EDR based on the playbook ID you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_playbooks_detail",
@@ -508,8 +509,7 @@
                 "platformsLocalizedStringList": "",
                 "description": "",
                 "priority": "",
-                "resultColumns": [
-                ],
+                "resultColumns": [],
                 "timeoutSeconds": "",
                 "impersonationUser": "",
                 "impersonationPassword": "",
@@ -573,7 +573,7 @@
           "title": "Playbook ID",
           "type": "text",
           "name": "id",
-          "description": "Unique ID of the playbook to get playbook details.",
+          "description": "Specify the unique ID of the playbook whose details you want to retrieve from Fidelis EDR.",
           "tooltip": "Unique ID of the playbook to get playbook details.",
           "required": true,
           "editable": true,
@@ -584,7 +584,7 @@
     {
       "operation": "get_api_info",
       "title": "Get API version Information",
-      "description": "Get API version information from Fidelis Endpoint EDR server",
+      "description": "Retrieves information on the API version from Fidelis EDR.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_api_info",
@@ -595,13 +595,12 @@
           "version": ""
         }
       },
-      "parameters": [
-      ]
+      "parameters": []
     },
     {
       "operation": "get_script_packages",
       "title": "Get Script Packages",
-      "description": "Get a list of all script packages from the Fidelis Endpoint EDR server",
+      "description": "Retrieves a list of all script packages from Fidelis EDR.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_script_packages",
@@ -619,13 +618,12 @@
           "totalCount": ""
         }
       },
-      "parameters": [
-      ]
+      "parameters": []
     },
     {
       "operation": "get_script_packages_file",
       "title": "Get Script Packages File",
-      "description": "Get script packages file from the Fidelis Endpoint EDR server based on script ID you have provided and attach that file to the attachment module.",
+      "description": "Retrieves the specificscript packages file from Fidelis EDR and adds this script file to the \"Attachment Module\" in FortiSOAR based on the script package ID you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_script_packages_file",
@@ -640,8 +638,7 @@
           "@type": "",
           "assignee": "",
           "filename": "",
-          "metadata": [
-          ],
+          "metadata": [],
           "mimeType": "",
           "thumbnail": "",
           "uploadDate": ""
@@ -650,24 +647,16 @@
         "type": "",
         "uuid": "",
         "@type": "",
-        "tasks": [
-        ],
-        "alerts": [
-        ],
-        "assets": [
-        ],
-        "owners": [
-        ],
-        "people": [
-        ],
+        "tasks": [],
+        "alerts": [],
+        "assets": [],
+        "owners": [],
+        "people": [],
         "@context": "",
         "assignee": "",
-        "comments": [
-        ],
-        "warrooms": [
-        ],
-        "incidents": [
-        ],
+        "comments": [],
+        "warrooms": [],
+        "incidents": [],
         "createDate": "",
         "createUser": {
           "id": "",
@@ -683,8 +672,7 @@
           "modifyDate": "",
           "modifyUser": ""
         },
-        "indicators": [
-        ],
+        "indicators": [],
         "modifyDate": "",
         "modifyUser": {
           "id": "",
@@ -700,10 +688,8 @@
           "modifyDate": "",
           "modifyUser": ""
         },
-        "recordTags": [
-        ],
-        "userOwners": [
-        ],
+        "recordTags": [],
+        "userOwners": [],
         "description": ""
       },
       "parameters": [
@@ -711,7 +697,7 @@
           "title": "Script Package ID",
           "type": "text",
           "name": "scriptID",
-          "description": "Enter Script Package ID to get its details",
+          "description": "Specify the ID of the script package that you want to retrieve from Fidelis EDR. This operation also adds the retrieved script file to the \"Attachment Module\" in FortiSOAR.",
           "tooltip": "Enter Script Package ID to get its details",
           "required": true,
           "editable": true,
@@ -722,7 +708,7 @@
     {
       "operation": "get_script_packages_manifest",
       "title": "Get Script Packages Manifest",
-      "description": "Get script packages Manifest from the Fidelis Endpoint EDR server based on script ID you have provided.",
+      "description": "Retrieves the manifest for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_script_packages_manifest",
@@ -781,7 +767,7 @@
           "title": "Script Package ID",
           "type": "text",
           "name": "scriptID",
-          "description": "Enter Script Package ID to its Packages Manifest",
+          "description": "Specify the ID of the script package whose package manifest you want to retrieve from Fidelis EDR.",
           "tooltip": "Enter Script Package ID to its Packages Manifest",
           "required": true,
           "editable": true,
@@ -792,7 +778,7 @@
     {
       "operation": "get_script_packages_metadata",
       "title": "Get Script Packages Metadata",
-      "description": "Get script packages Metadata from the Fidelis Endpoint EDR server based on script ID you have provided.",
+      "description": "Retrieves the metadata for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_script_packages_metadata",
@@ -834,7 +820,7 @@
           "title": "Script Package ID",
           "type": "text",
           "name": "scriptID",
-          "description": "Script Package ID to gets metadata",
+          "description": "Specify the ID of the script package whose package metadata you want to retrieve from Fidelis EDR.",
           "tooltip": "Script Package ID to gets metadata",
           "required": true,
           "editable": true,
@@ -845,7 +831,7 @@
     {
       "operation": "get_script_packages_template",
       "title": "Get Script Packages Template",
-      "description": "Get Script Package Template from the Fidelis Endpoint EDR server based on script ID you have provided.",
+      "description": "Retrieves the template for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_script_packages_template",
@@ -885,7 +871,7 @@
           "title": "Script Package ID",
           "type": "text",
           "name": "scriptID",
-          "description": "Enter script package ID to get its template",
+          "description": "Specify the ID of the script package whose package template you want to retrieve from Fidelis EDR.",
           "tooltip": "Enter script package ID to get its template",
           "required": true,
           "editable": true,
@@ -896,7 +882,7 @@
     {
       "operation": "execute_script_package",
       "title": "Execute Script Package",
-      "description": "Execute Script Package based on input parameters you have provided",
+      "description": "Executes a specific script package on Fidelis EDR based on the script package ID, timeout value, host information, and other input parameters you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "execute_script_package",
@@ -913,7 +899,7 @@
           "title": "Script Package ID",
           "type": "text",
           "name": "scriptPackageId",
-          "description": "Script Package ID to execute",
+          "description": "Specify the ID of the script package you want to execute on Fidelis EDR.",
           "tooltip": "Script Package ID to execute",
           "required": true,
           "editable": true,
@@ -923,7 +909,7 @@
           "title": "Timeout In Seconds",
           "type": "integer",
           "name": "timeoutInSeconds",
-          "description": "Enter Timeout in Seconds",
+          "description": "Specify the timeout value, in seconds, after which this operation will timeout.",
           "required": true,
           "editable": true,
           "visible": true
@@ -932,7 +918,7 @@
           "title": "Hosts",
           "type": "text",
           "name": "hosts",
-          "description": "You can specify multiple endpoint IP addresses in the hosts key using this format- [\"10.91.96.110\",\"10.91.96.216\"]",
+          "description": "You can specify multiple endpoint IP addresses in the \"hosts\" key using the following format: [\"10.91.96.110\",\"10.91.96.216\"]",
           "required": true,
           "editable": true,
           "visible": true,
@@ -942,7 +928,7 @@
           "title": "Integration Outputs",
           "type": "text",
           "name": "integrationOutputs",
-          "description": "You can specify the export format,for use with integrated products,using the integration Outputs key where the value is the name of the export type as specified in the configuration file.Forexample:\"integrationOutputs\":[\"CEFOutput\",\"LEEFOutput\"].For more information,see the SIEM Integrations Guide.",
+          "description": "(Optional) You can specify the export format, for use with integrated products, using the integration Outputskey, The value of the integration Outputskey is the name of the export type as specified in the configuration file. For example, \"integrationOutputs\":[\"CEFOutput\",\"LEEFOutput\"]. For more information, see the SIEM Integrations Guide.",
           "tooltip": "You can specify the export format.e.g [\"CEFOutput\",\"LEEFOutput\"]",
           "required": false,
           "editable": true,
@@ -953,7 +939,7 @@
           "title": "Questions",
           "type": "json",
           "name": "questions",
-          "description": "Enter key value pair of question data.e.g. {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
+          "description": "(Optional) Specify the key-value pair of question data. For example, {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
           "tooltip": "Enter key value pair of question data.e.g. {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
           "required": false,
           "editable": true,
@@ -971,7 +957,7 @@
     {
       "operation": "script_job_results",
       "title": "Get Script Job Results",
-      "description": "Get Job Results using result ID.",
+      "description": "Retrieves the results of a script job from Fidelis EDR based on the job result ID you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "script_job_results",
@@ -997,7 +983,7 @@
           "title": "Job Result ID",
           "type": "text",
           "name": "jobResultID",
-          "description": "Enter Job Result ID to get its result details",
+          "description": "Specify the ID of the job whose result details you want to retrieve from Fidelis EDR.",
           "tooltip": "Enter Job Result ID to get its result details",
           "required": true,
           "editable": true,
@@ -1008,7 +994,7 @@
     {
       "operation": "create_task",
       "title": "Execute Task",
-      "description": "Execute a task (run a script job or a playbook) in the Fidelis Endpoint EDR server.",
+      "description": "Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.",
       "enabled": true,
       "category": "investigation",
       "annotation": "create_task",
@@ -1022,7 +1008,7 @@
           "title": "Package ID",
           "type": "text",
           "name": "packageId",
-          "description": "Enter Package ID for task execution",
+          "description": "Specify the ID of the script package/playbook you want to execute on Fidelis EDR.",
           "placeholder": "e.g ff827a19-bb6e-4eab-b8d2-150f2e094046",
           "tooltip": "Enter Package ID for task execution",
           "required": true,
@@ -1037,7 +1023,7 @@
             "Script"
           ],
           "name": "isplaybook",
-          "description": "Select an option based on entered package ID is script or a playbook",
+          "description": "Select whether you want to run a script package or playbook onFidelis EDR.",
           "tooltip": "Select an option based on entered package ID is script or a playbook",
           "required": true,
           "editable": true,
@@ -1047,7 +1033,7 @@
           "title": "Endpoint IDs",
           "type": "text",
           "name": "endpoints",
-          "description": "Enter list of Endpoint IDs on which the task execution should happen",
+          "description": "Specify the IDs of the endpoints in the \"CSV\" or \"List\" format on which you want to execute the task.",
           "tooltip": "Enter list of Endpoints on which the task execution should happen",
           "required": true,
           "editable": true,

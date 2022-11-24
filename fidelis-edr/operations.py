@@ -112,6 +112,8 @@ def get_alerts(config, params):
     fa = Fidelis(config)
     endpoint = 'alerts/getalertsV2'
     params = get_params(params)
+    if not params.get('take'):
+        params['take'] = 1000
     return fa.make_api_call(endpoint=endpoint, params=params)
 
 

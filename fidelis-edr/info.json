@@ -143,18 +143,19 @@
           "type": "integer",
           "name": "take",
           "description": "Specify the maximum number of alerts that you want this operation to return in the response.By default, this is set to \"all\" alerts.",
-          "tooltip": "Limit the number of alerts to return in response",
+          "tooltip": "Limit the number of alerts to return in response. default is set to 1000",
           "required": false,
           "editable": true,
-          "visible": true
+          "visible": true,
+          "value": 1000
         },
         {
           "title": "Sort Alerts",
           "type": "text",
           "name": "sort",
-          "placeholder": "e.g CreatedDate Descending",
-          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"CreatedDate Descending\". You can specify the name of any property of the alert object.",
-          "tooltip": "Sorts the result before applying take and skip. Defaults to \"CreatedDate Descending\". Can be any property name of the alert object.",
+          "placeholder": "e.g id Descending",
+          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
+          "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object.",
           "required": false,
           "editable": true,
           "visible": true

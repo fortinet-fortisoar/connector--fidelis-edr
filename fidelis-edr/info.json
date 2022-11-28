@@ -112,7 +112,7 @@
           "type": "datetime",
           "name": "startDate",
           "description": "Select the start time of the time range from when you want to retrieve alerts from Fidelis Endpoint EDR.",
-          "tooltip": "The start of the time range of returned values.",
+          "tooltip": "The start of the time range of returned values. Date should be in the format of YYYY-MM-DDTHH:mm:ss.sssZ",
           "required": false,
           "editable": true,
           "visible": true
@@ -122,7 +122,7 @@
           "type": "datetime",
           "name": "endDate",
           "description": "Select the end time of the time range till when you want to retrieve alerts from Fidelis Endpoint EDR.",
-          "tooltip": "The end of the time range of returned values.",
+          "tooltip": "The end of the time range of returned values. Date should be in the format of YYYY-MM-DDTHH:mm:ss.sssZ",
           "required": false,
           "editable": true,
           "visible": true
@@ -302,11 +302,11 @@
       },
       "parameters": [
         {
-          "title": "Endpoint IDs",
+          "title": "Endpoint ID",
           "type": "text",
           "name": "endpointID",
-          "description": "Specify the IDs of the endpoints in the \"CSV\" or \"List\" format that you want to delete from Fidelis EDR.",
-          "tooltip": "Enter the endpoint IDs in csv or in list format",
+          "description": "Specify the ID of an endpoint that you want to delete from Fidelis EDR.",
+          "tooltip": "Enter the endpoint ID which you wants to delete",
           "required": true,
           "editable": true,
           "visible": true

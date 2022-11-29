@@ -89,6 +89,8 @@ class Fidelis(object):
             return response.get('data').get('token')
         else:
             logger.exception(str(response))
+            if 'Bad username or password' in str(response):
+                raise ConnectorError('Invalid endpoint or credentials')
             raise ConnectorError(str(response.get('error', '')))
 
 

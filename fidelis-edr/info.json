@@ -1,1047 +1,1336 @@
 {
-  "name": "fidelis-edr",
-  "label": "Fidelis EDR",
-  "version": "1.0.0",
-  "description": "Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively so you can accelerate your response and stop adversaries at the point of entry. This connector supports following actions Get Alerts, Get Endpoints, Detete Endpoints, etc",
-  "publisher": "Fortinet",
-  "cs_approved": true,
-  "cs_compatible": true,
-  "category": "Endpoint Protection",
-  "icon_small_name": "fidelis_small.png",
-  "icon_large_name": "fidelis_large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/fidelis-edr/445/fidelis-edr-v1-0-0",
-  "configuration": {
-    "fields": [
-      {
-        "title": "Server URL",
-        "type": "text",
-        "name": "server",
-        "description": "Specify the URL or IP address of the Fidelis EDR server to which you will connect and perform automated operations.",
-        "tooltip": "URL of the Fidelis EDR server to which you will connect and perform automated operations.",
-        "required": true,
-        "editable": true,
-        "visible": true
-      },
-      {
-        "title": "Username",
-        "type": "text",
-        "name": "username",
-        "description": "Specify the username that is configured for your account to access the Fidelis EDR server to which you will connect and perform automated operations.",
-        "tooltip": "Username that is configured for your account for using the Fidelis server.",
-        "required": true,
-        "editable": true,
-        "visible": true
-      },
-      {
-        "title": "Password",
-        "type": "password",
-        "name": "password",
-        "description": "Specify the password that is configured for your account to access the Fidelis EDR server to which you will connect and perform automated operations.",
-        "tooltip": "Password that is configured for your account for using the Fidelis EDR server.",
-        "required": true,
-        "editable": true,
-        "visible": true
-      },
-      {
-        "title": "Verify SSL",
-        "name": "verify_ssl",
-        "type": "checkbox",
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not.",
-        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not.",
-        "required": false,
-        "editable": true,
-        "visible": true,
-        "value": true
-      }
-    ]
-  },
-  "operations": [
-    {
-      "operation": "get_alerts",
-      "title": "Get Alerts",
-      "description": "Retrieves a list of all alerts or specific alerts from Fidelis EDR based on the input parameters you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_alerts",
-      "output_schema": {
-        "entities": [
-          {
-            "id": "",
-            "createDate": "",
-            "endpointName": "",
-            "endpointId": "",
-            "name": "",
-            "description": "",
-            "artifactName": "",
-            "source": "",
-            "sourceType": "",
-            "severity": "",
-            "intelId": "",
-            "intelName": "",
-            "validatedDate": "",
-            "actionsTaken": "",
-            "eventId": "",
-            "eventTime": "",
-            "parentEventId": "",
-            "eventType": "",
-            "eventIndex": "",
-            "reportId": "",
-            "telemetry": "",
-            "insertionDate": "",
-            "hasJob": "",
-            "osType": "",
-            "agentTag": "",
-            "enrichments": []
-          }
-        ],
-        "totalCount": ""
-      },
-      "parameters": [
-        {
-          "title": "Search String",
-          "type": "text",
-          "name": "facetSearch",
-          "description": "Specify a filter that you want to apply to the results of this operation. By default, this is set to an \"empty\" string",
-          "tooltip": "A filter applied on results of the get operation. Defaults to empty string ",
-          "required": false,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "Start Date",
-          "type": "datetime",
-          "name": "startDate",
-          "description": "Select the start time of the time range from when you want to retrieve alerts from Fidelis Endpoint EDR.",
-          "tooltip": "The start of the time range of returned values. Date should be in the format of YYYY-MM-DDTHH:mm:ss.sssZ",
-          "required": false,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "End Date",
-          "type": "datetime",
-          "name": "endDate",
-          "description": "Select the end time of the time range till when you want to retrieve alerts from Fidelis Endpoint EDR.",
-          "tooltip": "The end of the time range of returned values. Date should be in the format of YYYY-MM-DDTHH:mm:ss.sssZ",
-          "required": false,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "Offset",
-          "type": "integer",
-          "name": "skip",
-          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say alerts starting from the 10th alert. By default, this is set as \"0\".",
-          "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "value": "0"
-        },
-        {
-          "title": "Limit",
-          "type": "integer",
-          "name": "take",
-          "description": "Specify the maximum number of alerts that you want this operation to return in the response.By default, this is set to \"all\" alerts.",
-          "tooltip": "Limit the number of alerts to return in response. default is set to 1000",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "value": 1000
-        },
-        {
-          "title": "Sort Alerts",
-          "type": "text",
-          "name": "sort",
-          "placeholder": "e.g id Descending",
-          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
-          "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object.",
-          "required": false,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_endpoints",
-      "title": "Get Endpoints",
-      "description": "Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_endpoints",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "entities": [
+    "name": "fidelis-edr",
+    "version": "1.2.0",
+    "label": "Fidelis EDR",
+    "description": "Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively so you can accelerate your response and stop adversaries at the point of entry. This connector supports following actions Get Alerts, Get Endpoints, Detete Endpoints, etc",
+    "publisher": "SpryIQ.co",
+    "icon_small_name": "fidelis_small.png",
+    "icon_large_name": "fidelis_large.png",
+    "cs_approved": true,
+    "cs_compatible": true,
+    "category": "Endpoint Protection",
+    "help_online": "https://github.com/jitesh-spryiq/connector-fidelis-edr/blob/develop/docs/fidelis-edr-v1-2-0",
+    "configuration": {
+        "fields": [
             {
-              "id": "",
-              "hostName": "",
-              "ipAddress": "",
-              "externalAddress": "",
-              "description": "",
-              "lastContactDate": "",
-              "agentInstalled": "",
-              "agentVersion": "",
-              "os": "",
-              "macAddress": "",
-              "aV_Enabled": "",
-              "eventsStopped": "",
-              "locality": "",
-              "groupList": "",
-              "isGroupMember": "",
-              "agentConnected": "",
-              "isolated": "",
-              "osType": "",
-              "osArch": "",
-              "agentTag": "",
-              "createdDate": "",
-              "avSigVersion": "",
-              "advMalwareVersion": "",
-              "aR_Enabled": "",
-              "events_Enabled": "",
-              "agentId": "",
-              "groups": "",
-              "processorName": "",
-              "processorCount": "",
-              "processorSpeedInMhz": "",
-              "processorNumOfCores": "",
-              "processorNumOfLogicalProcessors": "",
-              "ramSize": "",
-              "flag": "",
-              "createdByType": "",
-              "interfaceIPs": "",
-              "agentScoreboardHash": "",
-              "investigativeModeEnabled": "",
-              "investigativeModeDuration": "",
-              "investigativeModeStartTime": "",
-              "eventsVersion": "",
-              "activeDirectoryId": "",
-              "lastAvScanDate": "",
-              "motherboardSerial": "",
-              "assetTag": "",
-              "manufacturer": "",
-              "model": "",
-              "protectStatus": "",
-              "hasAllAuthCerts": "",
-              "hasAllCommCerts": ""
-            }
-          ],
-          "totalCount": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Offset",
-          "type": "integer",
-          "name": "startIndex",
-          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say endpoints starting from the 10th endpoint. By default, this is set as \"0\".",
-          "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "value": 0
-        },
-        {
-          "title": "Limit",
-          "type": "integer",
-          "name": "count",
-          "description": "Specify the maximum number of endpoints that you want this operation to return in the response.",
-          "tooltip": "The number of endpoints to return in response",
-          "required": true,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "Sort",
-          "type": "text",
-          "name": "sort",
-          "description": "Specify the property name (and optionally the order) to sort the results retrieved by this operation, before applying the limit and offset. Examples of properties that can be specified are hostname, hostname descending, createdDate, createdDate descending, etc.",
-          "tooltip": "Sorts the result before applying limit and offset. Examples: hostname, hostname descending, createdDate, createdDate descending.",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_endpoints_by_name",
-      "title": "Get Endpoint By Name",
-      "description": "Retrieves theIDs of specific endpoints from Fidelis EDR based on the endpoint names you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_endpoints_by_name",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": []
-      },
-      "parameters": [
-        {
-          "title": "Endpoint Names",
-          "type": "text",
-          "name": "nameArray",
-          "description": "Specify the names of the endpoints in the \"CSV\" or \"List\" format whose IDs you want to retrieve from Fidelis EDR.",
-          "tooltip": "Enter the endpoint names in csv or in list format",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "delete_endpoint",
-      "title": "Delete Endpoint",
-      "description": "Deletes specific endpoints from Fidelis EDR based on the endpoint IDs you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "delete_endpoint",
-      "output_schema": {
-        "error": "",
-        "success": ""
-      },
-      "parameters": [
-        {
-          "title": "Endpoint ID",
-          "type": "text",
-          "name": "endpointID",
-          "description": "Specify the ID of an endpoint that you want to delete from Fidelis EDR.",
-          "tooltip": "Enter the endpoint ID which you wants to delete",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_playbooks",
-      "title": "Get Playbooks",
-      "description": "Retrieves a list of playbooks and their details from Fidelis EDR.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_playbooks",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "entities": [
-            {
-              "id": "",
-              "name": "",
-              "description": "",
-              "createdByName": "",
-              "createdById": "",
-              "createdDate": "",
-              "scriptCount": "",
-              "tags": "",
-              "hasEndpointAction": "",
-              "endpointActionText": ""
-            }
-          ],
-          "totalCount": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Limit Playbooks",
-          "type": "text",
-          "name": "take",
-          "description": "Specify the maximum number of playbooks that you want this operation to return in the response.",
-          "tooltip": "Enter Number of items to return in response",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "value": "100"
-        }
-      ]
-    },
-    {
-      "operation": "get_playbooks_scripts",
-      "title": "Get Playbooks And Scripts",
-      "description": "Retrieves details of all Fidelis playbooks and scripts or specific Fidelis playbooks and scripts from the Fidelis EDR based on the input parameters you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_playbooks_scripts",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "entities": [
-            {
-              "id": "",
-              "name": "",
-              "description": "",
-              "createdByName": "",
-              "createdById": "",
-              "createdDate": "",
-              "tags": "",
-              "platforms": {
-                "windows32": "",
-                "windows64": "",
-                "linux32": "",
-                "linux64": "",
-                "solaris": "",
-                "aix": "",
-                "osx": ""
-              },
-              "platformsStringList": "",
-              "packageType": ""
-            }
-          ],
-          "totalCount": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Type",
-          "type": "select",
-          "options": [
-            "1 - Playbooks",
-            "2 - Script Packages"
-          ],
-          "name": "filterType",
-          "description": "Select whether you want to retrieve script packages or playbooks from Fidelis EDR. By default, this is set as \"2 - Script Packages\".",
-          "tooltip": "Enables you to filter between script packages and playbooks. Default it returns all values.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "value": "2 - Script Packages"
-        },
-        {
-          "title": "OS Platform",
-          "type": "select",
-          "options": [
-            "All",
-            "Windows",
-            "Mac",
-            "Linux"
-          ],
-          "name": "platformFilter",
-          "description": "Select the OS Platform for which you want to retrieve script packages or playbooks from Fidelis EDR. You can choose between All, Windows, Mac, or Linux.",
-          "tooltip": "Enables you to choose between All, Windows, Mac, Linux.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "value": "All"
-        },
-        {
-          "title": "Sorting Order",
-          "type": "text",
-          "name": "sort",
-          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"name ascending\".",
-          "tooltip": "Sorts (ascending, descending) the result before applying take and skip. e.g name ascending",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "value": "name ascending"
-        },
-        {
-          "title": "Limit",
-          "type": "integer",
-          "name": "take",
-          "description": "Specify the maximum number of alerts that you want this operation to return in the response. By default, this is set to \"all\" playbooks or scripts",
-          "tooltip": "Limits the number of results returned. Defaults to all results.",
-          "required": false,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "Offset",
-          "type": "integer",
-          "name": "skip",
-          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say playbooks or scripts starting from the 10th playbook or script. By default, this is set as \"0\".",
-          "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
-          "required": false,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_playbooks_detail",
-      "title": "Get Playbooks Details",
-      "description": "Retrieves details for a specific playbook from Fidelis EDR based on the playbook ID you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_playbooks_detail",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "scripts": [
-            {
-              "hash": "",
-              "executionOrder": "",
-              "scriptId": "",
-              "scriptName": "",
-              "questions": [
-                {
-                  "paramNumber": "",
-                  "question": "",
-                  "answer": "",
-                  "isOptional": "",
-                  "inputType": ""
-                }
-              ],
-              "details": {
-                "id": "",
-                "name": "",
-                "platforms": {
-                  "windows32": "",
-                  "windows64": "",
-                  "linux32": "",
-                  "linux64": "",
-                  "solaris": "",
-                  "aix": "",
-                  "osx": ""
-                },
-                "tags": "",
-                "createdBy": "",
-                "createdByName": "",
-                "createdDate": "",
-                "fileCount": "",
-                "scriptPackageFiles": [
-                  {
-                    "fileName": "",
-                    "fileId": ""
-                  }
-                ],
-                "platformsStringList": "",
-                "platformsLocalizedStringList": "",
-                "description": "",
-                "priority": "",
-                "resultColumns": [],
-                "timeoutSeconds": "",
-                "impersonationUser": "",
-                "impersonationPassword": "",
-                "command": "",
-                "wizardOverridePassword": "",
-                "questions": [
-                  {
-                    "paramNumber": "",
-                    "question": "",
-                    "answer": "",
-                    "isOptional": "",
-                    "inputType": ""
-                  }
-                ],
-                "jsonQuestions": "",
-                "questionsHaveLoadError": "",
-                "resultDelimiter": "",
-                "dataDependencies": [],
-                "hasEndpointAction": "",
-                "endpointActionText": "",
-                "tenants": "",
-                "hash": ""
-              },
-              "queueExpirationEnabled": "",
-              "queueExpirationInhours": "",
-              "wizardOverridePassword": "",
-              "impersonationUser": "",
-              "impersonationPassword": "",
-              "impersonationPasswordEnc": "",
-              "integrationOutputFormat": "",
-              "priority": "",
-              "filter": "",
-              "basicOptions": "",
-              "volatileDetail": "",
-              "processDetail": "",
-              "iocDetail": "",
-              "yaraDetail": "",
-              "timeoutInSeconds": "",
-              "jsonAnswers": "",
-              "jsonQuestions": "",
-              "isPlaybook": ""
-            }
-          ],
-          "tenants": "",
-          "baseTenantId": "",
-          "hash": "",
-          "id": "",
-          "name": "",
-          "description": "",
-          "createdByName": "",
-          "createdById": "",
-          "createdDate": "",
-          "scriptCount": "",
-          "tags": "",
-          "hasEndpointAction": "",
-          "endpointActionText": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Playbook ID",
-          "type": "text",
-          "name": "id",
-          "description": "Specify the unique ID of the playbook whose details you want to retrieve from Fidelis EDR.",
-          "tooltip": "Unique ID of the playbook to get playbook details.",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_api_info",
-      "title": "Get API version Information",
-      "description": "Retrieves information on the API version from Fidelis EDR.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_api_info",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "version": ""
-        }
-      },
-      "parameters": []
-    },
-    {
-      "operation": "get_script_packages",
-      "title": "Get Script Packages",
-      "description": "Retrieves a list of all script packages from Fidelis EDR.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_script_packages",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "scripts": [
-            {
-              "id": "",
-              "name": "",
-              "description": ""
-            }
-          ],
-          "totalCount": ""
-        }
-      },
-      "parameters": []
-    },
-    {
-      "operation": "get_script_packages_file",
-      "title": "Get Script Packages File",
-      "description": "Retrieves the specificscript packages file from Fidelis EDR and adds this script file to the \"Attachment Module\" in FortiSOAR based on the script package ID you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_script_packages_file",
-      "output_schema": {
-        "id": "",
-        "@id": "",
-        "file": {
-          "id": "",
-          "@id": "",
-          "size": "",
-          "uuid": "",
-          "@type": "",
-          "assignee": "",
-          "filename": "",
-          "metadata": [],
-          "mimeType": "",
-          "thumbnail": "",
-          "uploadDate": ""
-        },
-        "name": "",
-        "type": "",
-        "uuid": "",
-        "@type": "",
-        "tasks": [],
-        "alerts": [],
-        "assets": [],
-        "owners": [],
-        "people": [],
-        "@context": "",
-        "assignee": "",
-        "comments": [],
-        "warrooms": [],
-        "incidents": [],
-        "createDate": "",
-        "createUser": {
-          "id": "",
-          "@id": "",
-          "name": "",
-          "uuid": "",
-          "@type": "",
-          "avatar": "",
-          "userId": "",
-          "userType": "",
-          "createDate": "",
-          "createUser": "",
-          "modifyDate": "",
-          "modifyUser": ""
-        },
-        "indicators": [],
-        "modifyDate": "",
-        "modifyUser": {
-          "id": "",
-          "@id": "",
-          "name": "",
-          "uuid": "",
-          "@type": "",
-          "avatar": "",
-          "userId": "",
-          "userType": "",
-          "createDate": "",
-          "createUser": "",
-          "modifyDate": "",
-          "modifyUser": ""
-        },
-        "recordTags": [],
-        "userOwners": [],
-        "description": ""
-      },
-      "parameters": [
-        {
-          "title": "Script Package ID",
-          "type": "text",
-          "name": "scriptID",
-          "description": "Specify the ID of the script package that you want to retrieve from Fidelis EDR. This operation also adds the retrieved script file to the \"Attachment Module\" in FortiSOAR.",
-          "tooltip": "Enter Script Package ID to get its details",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_script_packages_manifest",
-      "title": "Get Script Packages Manifest",
-      "description": "Retrieves the manifest for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_script_packages_manifest",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "id": "",
-          "name": "",
-          "platforms": {
-            "windows32": "",
-            "windows64": "",
-            "linux32": "",
-            "linux64": "",
-            "solaris": "",
-            "aix": "",
-            "osx": ""
-          },
-          "tags": "",
-          "createdBy": "",
-          "createdByName": "",
-          "createdDate": "",
-          "fileCount": "",
-          "scriptPackageFiles": [
-            {
-              "fileName": "",
-              "fileId": ""
-            }
-          ],
-          "platformsStringList": "",
-          "platformsLocalizedStringList": "",
-          "description": "",
-          "priority": "",
-          "resultColumns": [
-            "Not Before",
-            "Serial Number"
-          ],
-          "timeoutSeconds": "",
-          "impersonationUser": "",
-          "impersonationPassword": "",
-          "command": "",
-          "wizardOverridePassword": "",
-          "questions": [],
-          "jsonQuestions": "",
-          "questionsHaveLoadError": "",
-          "resultDelimiter": "",
-          "dataDependencies": [],
-          "hasEndpointAction": "",
-          "endpointActionText": "",
-          "tenants": "",
-          "hash": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Script Package ID",
-          "type": "text",
-          "name": "scriptID",
-          "description": "Specify the ID of the script package whose package manifest you want to retrieve from Fidelis EDR.",
-          "tooltip": "Enter Script Package ID to its Packages Manifest",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_script_packages_metadata",
-      "title": "Get Script Packages Metadata",
-      "description": "Retrieves the metadata for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_script_packages_metadata",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "integrationOutputs": "",
-          "scriptPackageId": "",
-          "useImpersonation": "",
-          "impersonationUser": "",
-          "impersonationPassword": "",
-          "timeoutInSeconds": "",
-          "hosts": "",
-          "endpointIds": [
-            {}
-          ],
-          "questions": {},
-          "useSchedule": "",
-          "schedule": {
-            "initialDateTime": "",
-            "recurrenceRange": "",
-            "maxRecurrenceCount": "",
-            "endDateTime": "",
-            "timeUnit": "",
-            "period": "",
-            "ordinalUnit": "",
-            "ordinal": "",
-            "ordinalDayOfWeek": "",
-            "ordinalMonth": "",
-            "weekday": "",
-            "timeZoneName": "",
-            "isIncremental": ""
-          }
-        }
-      },
-      "parameters": [
-        {
-          "title": "Script Package ID",
-          "type": "text",
-          "name": "scriptID",
-          "description": "Specify the ID of the script package whose package metadata you want to retrieve from Fidelis EDR.",
-          "tooltip": "Script Package ID to gets metadata",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "get_script_packages_template",
-      "title": "Get Script Packages Template",
-      "description": "Retrieves the template for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "get_script_packages_template",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "integrationOutputs": [],
-          "scriptPackageId": "",
-          "useImpersonation": "",
-          "impersonationUser": "",
-          "impersonationPassword": "",
-          "timeoutInSeconds": "",
-          "hosts": [],
-          "endpointIds": [],
-          "questions": {},
-          "useSchedule": "",
-          "schedule": {
-            "initialDateTime": "",
-            "recurrenceRange": "",
-            "maxRecurrenceCount": "",
-            "endDateTime": "",
-            "timeUnit": "",
-            "period": "",
-            "ordinalUnit": "",
-            "ordinal": "",
-            "ordinalDayOfWeek": "",
-            "ordinalMonth": "",
-            "weekday": [],
-            "timeZoneName": "",
-            "isIncremental": ""
-          }
-        }
-      },
-      "parameters": [
-        {
-          "title": "Script Package ID",
-          "type": "text",
-          "name": "scriptID",
-          "description": "Specify the ID of the script package whose package template you want to retrieve from Fidelis EDR.",
-          "tooltip": "Enter script package ID to get its template",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
-    },
-    {
-      "operation": "execute_script_package",
-      "title": "Execute Script Package",
-      "description": "Executes a specific script package on Fidelis EDR based on the script package ID, timeout value, host information, and other input parameters you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "execute_script_package",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "jobId": "",
-          "jobResultId": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Script Package ID",
-          "type": "text",
-          "name": "scriptPackageId",
-          "description": "Specify the ID of the script package you want to execute on Fidelis EDR.",
-          "tooltip": "Script Package ID to execute",
-          "required": true,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "Timeout In Seconds",
-          "type": "integer",
-          "name": "timeoutInSeconds",
-          "description": "Specify the timeout value, in seconds, after which this operation will timeout.",
-          "required": true,
-          "editable": true,
-          "visible": true
-        },
-        {
-          "title": "Hosts",
-          "type": "text",
-          "name": "hosts",
-          "description": "You can specify multiple endpoint IP addresses in the \"hosts\" key using the following format: [\"10.91.96.110\",\"10.91.96.216\"]",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "placeholder": "e.g [\"10.92.105.92\"]"
-        },
-        {
-          "title": "Integration Outputs",
-          "type": "text",
-          "name": "integrationOutputs",
-          "description": "(Optional) You can specify the export format, for use with integrated products, using the integration Outputskey, The value of the integration Outputskey is the name of the export type as specified in the configuration file. For example, \"integrationOutputs\":[\"CEFOutput\",\"LEEFOutput\"]. For more information, see the SIEM Integrations Guide.",
-          "tooltip": "You can specify the export format.e.g [\"CEFOutput\",\"LEEFOutput\"]",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "placeholder": "e.g [\"CEFOutput\",\"LEEFOutput\"]"
-        },
-        {
-          "title": "Questions",
-          "type": "json",
-          "name": "questions",
-          "description": "(Optional) Specify the key-value pair of question data. For example, {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
-          "tooltip": "Enter key value pair of question data.e.g. {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "value": {
-            "paramNumber": 1,
-            "question": "Type",
-            "answer": "",
-            "isOptional": "false",
-            "inputType": "text"
-          }
-        }
-      ]
-    },
-    {
-      "operation": "script_job_results",
-      "title": "Get Script Job Results",
-      "description": "Retrieves the results of a script job from Fidelis EDR based on the job result ID you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "script_job_results",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
-          "hits": {
-            "total": {
-              "value": "",
-              "relation": ""
+                "title": "Server URL",
+                "type": "text",
+                "name": "server",
+                "description": "Specify the URL or IP address of the Fidelis EDR server to which you will connect and perform automated operations.",
+                "tooltip": "URL of the Fidelis EDR server to which you will connect and perform automated operations.",
+                "required": true,
+                "editable": true,
+                "visible": true
             },
-            "hits": [],
-            "useNonDeterministicPaging": "",
-            "nonDeterministicPagingInfo": ""
-          },
-          "columns": [],
-          "pendingMigration": ""
-        }
-      },
-      "parameters": [
-        {
-          "title": "Job Result ID",
-          "type": "text",
-          "name": "jobResultID",
-          "description": "Specify the ID of the job whose result details you want to retrieve from Fidelis EDR.",
-          "tooltip": "Enter Job Result ID to get its result details",
-          "required": true,
-          "editable": true,
-          "visible": true
-        }
-      ]
+            {
+                "title": "Username",
+                "type": "text",
+                "name": "username",
+                "description": "Specify the username that is configured for your account to access the Fidelis EDR server to which you will connect and perform automated operations.",
+                "tooltip": "Username that is configured for your account for using the Fidelis server.",
+                "required": true,
+                "editable": true,
+                "visible": true
+            },
+            {
+                "title": "Password",
+                "type": "password",
+                "name": "password",
+                "description": "Specify the password that is configured for your account to access the Fidelis EDR server to which you will connect and perform automated operations.",
+                "tooltip": "Password that is configured for your account for using the Fidelis EDR server.",
+                "required": true,
+                "editable": true,
+                "visible": true
+            },
+            {
+                "title": "Verify SSL",
+                "name": "verify_ssl",
+                "type": "checkbox",
+                "description": "Specifies whether the SSL certificate for the server is to be verified or not.",
+                "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not.",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "value": true
+            }
+        ]
     },
-    {
-      "operation": "create_task",
-      "title": "Execute Task",
-      "description": "Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.",
-      "enabled": true,
-      "category": "investigation",
-      "annotation": "create_task",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": ""
-      },
-      "parameters": [
+    "operations": [
         {
-          "title": "Package ID",
-          "type": "text",
-          "name": "packageId",
-          "description": "Specify the ID of the script package/playbook you want to execute on Fidelis EDR.",
-          "placeholder": "e.g ff827a19-bb6e-4eab-b8d2-150f2e094046",
-          "tooltip": "Enter Package ID for task execution",
-          "required": true,
-          "editable": true,
-          "visible": true
+            "operation": "get_alerts",
+            "title": "Get Alerts",
+            "description": "Retrieves a list of all alerts or specific alerts from Fidelis EDR based on the input parameters you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_alerts",
+            "output_schema": {
+                "entities": [
+                    {
+                        "id": "",
+                        "createDate": "",
+                        "endpointName": "",
+                        "endpointId": "",
+                        "name": "",
+                        "description": "",
+                        "artifactName": "",
+                        "source": "",
+                        "sourceType": "",
+                        "severity": "",
+                        "intelId": "",
+                        "intelName": "",
+                        "validatedDate": "",
+                        "actionsTaken": "",
+                        "eventId": "",
+                        "eventTime": "",
+                        "parentEventId": "",
+                        "eventType": "",
+                        "eventIndex": "",
+                        "reportId": "",
+                        "telemetry": "",
+                        "insertionDate": "",
+                        "hasJob": "",
+                        "osType": "",
+                        "agentTag": "",
+                        "enrichments": []
+                    }
+                ],
+                "totalCount": ""
+            },
+            "parameters": [
+                {
+                    "title": "Search String",
+                    "type": "text",
+                    "name": "facetSearch",
+                    "description": "Specify a filter that you want to apply to the results of this operation. By default, this is set to an \"empty\" string",
+                    "tooltip": "A filter applied on results of the get operation. Defaults to empty string ",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Start Date",
+                    "type": "datetime",
+                    "name": "startDate",
+                    "description": "Select the start time of the time range from when you want to retrieve alerts from Fidelis Endpoint EDR.",
+                    "tooltip": "The start of the time range of returned values. Date should be in the format of YYYY-MM-DDTHH:mm:ss.sssZ",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "End Date",
+                    "type": "datetime",
+                    "name": "endDate",
+                    "description": "Select the end time of the time range till when you want to retrieve alerts from Fidelis Endpoint EDR.",
+                    "tooltip": "The end of the time range of returned values. Date should be in the format of YYYY-MM-DDTHH:mm:ss.sssZ",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Offset",
+                    "type": "integer",
+                    "name": "skip",
+                    "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say alerts starting from the 10th alert. By default, this is set as \"0\".",
+                    "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": "0"
+                },
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "take",
+                    "description": "Specify the maximum number of alerts that you want this operation to return in the response.By default, this is set to \"all\" alerts.",
+                    "tooltip": "Limit the number of alerts to return in response. default is set to 1000",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": 1000
+                },
+                {
+                    "title": "Sort Alerts",
+                    "type": "text",
+                    "name": "sort",
+                    "placeholder": "e.g id Descending",
+                    "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
+                    "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
         },
         {
-          "title": "IS Playbook Or Script",
-          "type": "select",
-          "options": [
-            "Playbook",
-            "Script"
-          ],
-          "name": "isplaybook",
-          "description": "Select whether you want to run a script package or playbook onFidelis EDR.",
-          "tooltip": "Select an option based on entered package ID is script or a playbook",
-          "required": true,
-          "editable": true,
-          "visible": true
+            "operation": "get_endpoints",
+            "title": "Get Endpoints",
+            "description": "Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_endpoints",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "entities": [
+                        {
+                            "id": "",
+                            "hostName": "",
+                            "ipAddress": "",
+                            "externalAddress": "",
+                            "description": "",
+                            "lastContactDate": "",
+                            "agentInstalled": "",
+                            "agentVersion": "",
+                            "os": "",
+                            "macAddress": "",
+                            "aV_Enabled": "",
+                            "eventsStopped": "",
+                            "locality": "",
+                            "groupList": "",
+                            "isGroupMember": "",
+                            "agentConnected": "",
+                            "isolated": "",
+                            "osType": "",
+                            "osArch": "",
+                            "agentTag": "",
+                            "createdDate": "",
+                            "avSigVersion": "",
+                            "advMalwareVersion": "",
+                            "aR_Enabled": "",
+                            "events_Enabled": "",
+                            "agentId": "",
+                            "groups": "",
+                            "processorName": "",
+                            "processorCount": "",
+                            "processorSpeedInMhz": "",
+                            "processorNumOfCores": "",
+                            "processorNumOfLogicalProcessors": "",
+                            "ramSize": "",
+                            "flag": "",
+                            "createdByType": "",
+                            "interfaceIPs": "",
+                            "agentScoreboardHash": "",
+                            "investigativeModeEnabled": "",
+                            "investigativeModeDuration": "",
+                            "investigativeModeStartTime": "",
+                            "eventsVersion": "",
+                            "activeDirectoryId": "",
+                            "lastAvScanDate": "",
+                            "motherboardSerial": "",
+                            "assetTag": "",
+                            "manufacturer": "",
+                            "model": "",
+                            "protectStatus": "",
+                            "hasAllAuthCerts": "",
+                            "hasAllCommCerts": ""
+                        }
+                    ],
+                    "totalCount": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Offset",
+                    "type": "integer",
+                    "name": "startIndex",
+                    "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say endpoints starting from the 10th endpoint. By default, this is set as \"0\".",
+                    "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "value": 0
+                },
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "count",
+                    "description": "Specify the maximum number of endpoints that you want this operation to return in the response.",
+                    "tooltip": "The number of endpoints to return in response",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Sort",
+                    "type": "text",
+                    "name": "sort",
+                    "description": "Specify the property name (and optionally the order) to sort the results retrieved by this operation, before applying the limit and offset. Examples of properties that can be specified are hostname, hostname descending, createdDate, createdDate descending, etc.",
+                    "tooltip": "Sorts the result before applying limit and offset. Examples: hostname, hostname descending, createdDate, createdDate descending.",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
         },
         {
-          "title": "Endpoint IDs",
-          "type": "text",
-          "name": "endpoints",
-          "description": "Specify the IDs of the endpoints in the \"CSV\" or \"List\" format on which you want to execute the task.",
-          "tooltip": "Enter list of Endpoints on which the task execution should happen",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "placeholder": "e.g [\"0d065003-7df5-47c8-98eb-aaaa04e0eb59\",\"c80dbb3b-4a8f-4bb9-8e9f-aaaa04d838cd\"]"
+            "operation": "get_endpoints_by_name",
+            "title": "Get Endpoint By Name",
+            "description": "Retrieves theIDs of specific endpoints from Fidelis EDR based on the endpoint names you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_endpoints_by_name",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": []
+            },
+            "parameters": [
+                {
+                    "title": "Endpoint Names",
+                    "type": "text",
+                    "name": "nameArray",
+                    "description": "Specify the names of the endpoints in the \"CSV\" or \"List\" format whose IDs you want to retrieve from Fidelis EDR.",
+                    "tooltip": "Enter the endpoint names in csv or in list format",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "delete_endpoint",
+            "title": "Delete Endpoint",
+            "description": "Deletes specific endpoints from Fidelis EDR based on the endpoint IDs you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "delete_endpoint",
+            "output_schema": {
+                "error": "",
+                "success": ""
+            },
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointID",
+                    "description": "Specify the ID of an endpoint that you want to delete from Fidelis EDR.",
+                    "tooltip": "Enter the endpoint ID which you wants to delete",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_playbooks",
+            "title": "Get Playbooks",
+            "description": "Retrieves a list of playbooks and their details from Fidelis EDR.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_playbooks",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "entities": [
+                        {
+                            "id": "",
+                            "name": "",
+                            "description": "",
+                            "createdByName": "",
+                            "createdById": "",
+                            "createdDate": "",
+                            "scriptCount": "",
+                            "tags": "",
+                            "hasEndpointAction": "",
+                            "endpointActionText": ""
+                        }
+                    ],
+                    "totalCount": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Limit Playbooks",
+                    "type": "text",
+                    "name": "take",
+                    "description": "Specify the maximum number of playbooks that you want this operation to return in the response.",
+                    "tooltip": "Enter Number of items to return in response",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "value": "100"
+                }
+            ]
+        },
+        {
+            "operation": "get_playbooks_scripts",
+            "title": "Get Playbooks And Scripts",
+            "description": "Retrieves details of all Fidelis playbooks and scripts or specific Fidelis playbooks and scripts from the Fidelis EDR based on the input parameters you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_playbooks_scripts",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "entities": [
+                        {
+                            "id": "",
+                            "name": "",
+                            "description": "",
+                            "createdByName": "",
+                            "createdById": "",
+                            "createdDate": "",
+                            "tags": "",
+                            "platforms": {
+                                "windows32": "",
+                                "windows64": "",
+                                "linux32": "",
+                                "linux64": "",
+                                "solaris": "",
+                                "aix": "",
+                                "osx": ""
+                            },
+                            "platformsStringList": "",
+                            "packageType": ""
+                        }
+                    ],
+                    "totalCount": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Type",
+                    "type": "select",
+                    "options": [
+                        "1 - Playbooks",
+                        "2 - Script Packages"
+                    ],
+                    "name": "filterType",
+                    "description": "Select whether you want to retrieve script packages or playbooks from Fidelis EDR. By default, this is set as \"2 - Script Packages\".",
+                    "tooltip": "Enables you to filter between script packages and playbooks. Default it returns all values.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": "2 - Script Packages"
+                },
+                {
+                    "title": "OS Platform",
+                    "type": "select",
+                    "options": [
+                        "All",
+                        "Windows",
+                        "Mac",
+                        "Linux"
+                    ],
+                    "name": "platformFilter",
+                    "description": "Select the OS Platform for which you want to retrieve script packages or playbooks from Fidelis EDR. You can choose between All, Windows, Mac, or Linux.",
+                    "tooltip": "Enables you to choose between All, Windows, Mac, Linux.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": "All"
+                },
+                {
+                    "title": "Sorting Order",
+                    "type": "text",
+                    "name": "sort",
+                    "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"name ascending\".",
+                    "tooltip": "Sorts (ascending, descending) the result before applying take and skip. e.g name ascending",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": "name ascending"
+                },
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "take",
+                    "description": "Specify the maximum number of alerts that you want this operation to return in the response. By default, this is set to \"all\" playbooks or scripts",
+                    "tooltip": "Limits the number of results returned. Defaults to all results.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Offset",
+                    "type": "integer",
+                    "name": "skip",
+                    "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say playbooks or scripts starting from the 10th playbook or script. By default, this is set as \"0\".",
+                    "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_playbooks_detail",
+            "title": "Get Playbooks Details",
+            "description": "Retrieves details for a specific playbook from Fidelis EDR based on the playbook ID you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_playbooks_detail",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "scripts": [
+                        {
+                            "hash": "",
+                            "executionOrder": "",
+                            "scriptId": "",
+                            "scriptName": "",
+                            "questions": [
+                                {
+                                    "paramNumber": "",
+                                    "question": "",
+                                    "answer": "",
+                                    "isOptional": "",
+                                    "inputType": ""
+                                }
+                            ],
+                            "details": {
+                                "id": "",
+                                "name": "",
+                                "platforms": {
+                                    "windows32": "",
+                                    "windows64": "",
+                                    "linux32": "",
+                                    "linux64": "",
+                                    "solaris": "",
+                                    "aix": "",
+                                    "osx": ""
+                                },
+                                "tags": "",
+                                "createdBy": "",
+                                "createdByName": "",
+                                "createdDate": "",
+                                "fileCount": "",
+                                "scriptPackageFiles": [
+                                    {
+                                        "fileName": "",
+                                        "fileId": ""
+                                    }
+                                ],
+                                "platformsStringList": "",
+                                "platformsLocalizedStringList": "",
+                                "description": "",
+                                "priority": "",
+                                "resultColumns": [],
+                                "timeoutSeconds": "",
+                                "impersonationUser": "",
+                                "impersonationPassword": "",
+                                "command": "",
+                                "wizardOverridePassword": "",
+                                "questions": [
+                                    {
+                                        "paramNumber": "",
+                                        "question": "",
+                                        "answer": "",
+                                        "isOptional": "",
+                                        "inputType": ""
+                                    }
+                                ],
+                                "jsonQuestions": "",
+                                "questionsHaveLoadError": "",
+                                "resultDelimiter": "",
+                                "dataDependencies": [],
+                                "hasEndpointAction": "",
+                                "endpointActionText": "",
+                                "tenants": "",
+                                "hash": ""
+                            },
+                            "queueExpirationEnabled": "",
+                            "queueExpirationInhours": "",
+                            "wizardOverridePassword": "",
+                            "impersonationUser": "",
+                            "impersonationPassword": "",
+                            "impersonationPasswordEnc": "",
+                            "integrationOutputFormat": "",
+                            "priority": "",
+                            "filter": "",
+                            "basicOptions": "",
+                            "volatileDetail": "",
+                            "processDetail": "",
+                            "iocDetail": "",
+                            "yaraDetail": "",
+                            "timeoutInSeconds": "",
+                            "jsonAnswers": "",
+                            "jsonQuestions": "",
+                            "isPlaybook": ""
+                        }
+                    ],
+                    "tenants": "",
+                    "baseTenantId": "",
+                    "hash": "",
+                    "id": "",
+                    "name": "",
+                    "description": "",
+                    "createdByName": "",
+                    "createdById": "",
+                    "createdDate": "",
+                    "scriptCount": "",
+                    "tags": "",
+                    "hasEndpointAction": "",
+                    "endpointActionText": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Playbook ID",
+                    "type": "text",
+                    "name": "id",
+                    "description": "Specify the unique ID of the playbook whose details you want to retrieve from Fidelis EDR.",
+                    "tooltip": "Unique ID of the playbook to get playbook details.",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_api_info",
+            "title": "Get API version Information",
+            "description": "Retrieves information on the API version from Fidelis EDR.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_api_info",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "version": ""
+                }
+            },
+            "parameters": []
+        },
+        {
+            "operation": "get_script_packages",
+            "title": "Get Script Packages",
+            "description": "Retrieves a list of all script packages from Fidelis EDR.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_script_packages",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "scripts": [
+                        {
+                            "id": "",
+                            "name": "",
+                            "description": ""
+                        }
+                    ],
+                    "totalCount": ""
+                }
+            },
+            "parameters": []
+        },
+        {
+            "operation": "get_script_packages_file",
+            "title": "Get Script Packages File",
+            "description": "Retrieves the specificscript packages file from Fidelis EDR and adds this script file to the \"Attachment Module\" in FortiSOAR based on the script package ID you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_script_packages_file",
+            "output_schema": {
+                "id": "",
+                "@id": "",
+                "file": {
+                    "id": "",
+                    "@id": "",
+                    "size": "",
+                    "uuid": "",
+                    "@type": "",
+                    "assignee": "",
+                    "filename": "",
+                    "metadata": [],
+                    "mimeType": "",
+                    "thumbnail": "",
+                    "uploadDate": ""
+                },
+                "name": "",
+                "type": "",
+                "uuid": "",
+                "@type": "",
+                "tasks": [],
+                "alerts": [],
+                "assets": [],
+                "owners": [],
+                "people": [],
+                "@context": "",
+                "assignee": "",
+                "comments": [],
+                "warrooms": [],
+                "incidents": [],
+                "createDate": "",
+                "createUser": {
+                    "id": "",
+                    "@id": "",
+                    "name": "",
+                    "uuid": "",
+                    "@type": "",
+                    "avatar": "",
+                    "userId": "",
+                    "userType": "",
+                    "createDate": "",
+                    "createUser": "",
+                    "modifyDate": "",
+                    "modifyUser": ""
+                },
+                "indicators": [],
+                "modifyDate": "",
+                "modifyUser": {
+                    "id": "",
+                    "@id": "",
+                    "name": "",
+                    "uuid": "",
+                    "@type": "",
+                    "avatar": "",
+                    "userId": "",
+                    "userType": "",
+                    "createDate": "",
+                    "createUser": "",
+                    "modifyDate": "",
+                    "modifyUser": ""
+                },
+                "recordTags": [],
+                "userOwners": [],
+                "description": ""
+            },
+            "parameters": [
+                {
+                    "title": "Script Package ID",
+                    "type": "text",
+                    "name": "scriptID",
+                    "description": "Specify the ID of the script package that you want to retrieve from Fidelis EDR. This operation also adds the retrieved script file to the \"Attachment Module\" in FortiSOAR.",
+                    "tooltip": "Enter Script Package ID to get its details",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_script_packages_manifest",
+            "title": "Get Script Packages Manifest",
+            "description": "Retrieves the manifest for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_script_packages_manifest",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "id": "",
+                    "name": "",
+                    "platforms": {
+                        "windows32": "",
+                        "windows64": "",
+                        "linux32": "",
+                        "linux64": "",
+                        "solaris": "",
+                        "aix": "",
+                        "osx": ""
+                    },
+                    "tags": "",
+                    "createdBy": "",
+                    "createdByName": "",
+                    "createdDate": "",
+                    "fileCount": "",
+                    "scriptPackageFiles": [
+                        {
+                            "fileName": "",
+                            "fileId": ""
+                        }
+                    ],
+                    "platformsStringList": "",
+                    "platformsLocalizedStringList": "",
+                    "description": "",
+                    "priority": "",
+                    "resultColumns": [
+                        "Not Before",
+                        "Serial Number"
+                    ],
+                    "timeoutSeconds": "",
+                    "impersonationUser": "",
+                    "impersonationPassword": "",
+                    "command": "",
+                    "wizardOverridePassword": "",
+                    "questions": [],
+                    "jsonQuestions": "",
+                    "questionsHaveLoadError": "",
+                    "resultDelimiter": "",
+                    "dataDependencies": [],
+                    "hasEndpointAction": "",
+                    "endpointActionText": "",
+                    "tenants": "",
+                    "hash": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Script Package ID",
+                    "type": "text",
+                    "name": "scriptID",
+                    "description": "Specify the ID of the script package whose package manifest you want to retrieve from Fidelis EDR.",
+                    "tooltip": "Enter Script Package ID to its Packages Manifest",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_script_packages_metadata",
+            "title": "Get Script Packages Metadata",
+            "description": "Retrieves the metadata for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_script_packages_metadata",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "integrationOutputs": "",
+                    "scriptPackageId": "",
+                    "useImpersonation": "",
+                    "impersonationUser": "",
+                    "impersonationPassword": "",
+                    "timeoutInSeconds": "",
+                    "hosts": "",
+                    "endpointIds": [
+                        {}
+                    ],
+                    "questions": {},
+                    "useSchedule": "",
+                    "schedule": {
+                        "initialDateTime": "",
+                        "recurrenceRange": "",
+                        "maxRecurrenceCount": "",
+                        "endDateTime": "",
+                        "timeUnit": "",
+                        "period": "",
+                        "ordinalUnit": "",
+                        "ordinal": "",
+                        "ordinalDayOfWeek": "",
+                        "ordinalMonth": "",
+                        "weekday": "",
+                        "timeZoneName": "",
+                        "isIncremental": ""
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Script Package ID",
+                    "type": "text",
+                    "name": "scriptID",
+                    "description": "Specify the ID of the script package whose package metadata you want to retrieve from Fidelis EDR.",
+                    "tooltip": "Script Package ID to gets metadata",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_script_packages_template",
+            "title": "Get Script Packages Template",
+            "description": "Retrieves the template for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_script_packages_template",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "integrationOutputs": [],
+                    "scriptPackageId": "",
+                    "useImpersonation": "",
+                    "impersonationUser": "",
+                    "impersonationPassword": "",
+                    "timeoutInSeconds": "",
+                    "hosts": [],
+                    "endpointIds": [],
+                    "questions": {},
+                    "useSchedule": "",
+                    "schedule": {
+                        "initialDateTime": "",
+                        "recurrenceRange": "",
+                        "maxRecurrenceCount": "",
+                        "endDateTime": "",
+                        "timeUnit": "",
+                        "period": "",
+                        "ordinalUnit": "",
+                        "ordinal": "",
+                        "ordinalDayOfWeek": "",
+                        "ordinalMonth": "",
+                        "weekday": [],
+                        "timeZoneName": "",
+                        "isIncremental": ""
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Script Package ID",
+                    "type": "text",
+                    "name": "scriptID",
+                    "description": "Specify the ID of the script package whose package template you want to retrieve from Fidelis EDR.",
+                    "tooltip": "Enter script package ID to get its template",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "execute_script_package",
+            "title": "Execute Script Package",
+            "description": "Executes a specific script package on Fidelis EDR based on the script package ID, timeout value, host information, and other input parameters you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "execute_script_package",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "jobId": "",
+                    "jobResultId": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Script Package ID",
+                    "type": "text",
+                    "name": "scriptPackageId",
+                    "description": "Specify the ID of the script package you want to execute on Fidelis EDR.",
+                    "tooltip": "Script Package ID to execute",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Timeout In Seconds",
+                    "type": "integer",
+                    "name": "timeoutInSeconds",
+                    "description": "Specify the timeout value, in seconds, after which this operation will timeout.",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Hosts",
+                    "type": "text",
+                    "name": "hosts",
+                    "description": "You can specify multiple endpoint IP addresses in the \"hosts\" key using the following format: [\"10.91.96.110\",\"10.91.96.216\"]",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "placeholder": "e.g [\"10.92.105.92\"]"
+                },
+                {
+                    "title": "Integration Outputs",
+                    "type": "text",
+                    "name": "integrationOutputs",
+                    "description": "(Optional) You can specify the export format, for use with integrated products, using the integration Outputskey, The value of the integration Outputskey is the name of the export type as specified in the configuration file. For example, \"integrationOutputs\":[\"CEFOutput\",\"LEEFOutput\"]. For more information, see the SIEM Integrations Guide.",
+                    "tooltip": "You can specify the export format.e.g [\"CEFOutput\",\"LEEFOutput\"]",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "placeholder": "e.g [\"CEFOutput\",\"LEEFOutput\"]"
+                },
+                {
+                    "title": "Questions",
+                    "type": "json",
+                    "name": "questions",
+                    "description": "(Optional) Specify the key-value pair of question data. For example, {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
+                    "tooltip": "Enter key value pair of question data.e.g. {\"paramNumber\": 1,\"question\": \"Type\",\"answer\": \"\",\"isOptional\": \"false\",\"inputType\": \"text\"}",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": {
+                        "paramNumber": 1,
+                        "question": "Type",
+                        "answer": "",
+                        "isOptional": "false",
+                        "inputType": "text"
+                    }
+                }
+            ]
+        },
+        {
+            "operation": "script_job_results",
+            "title": "Get Script Job Results",
+            "description": "Retrieves the results of a script job from Fidelis EDR based on the job result ID you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "script_job_results",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "hits": {
+                        "total": {
+                            "value": "",
+                            "relation": ""
+                        },
+                        "hits": [],
+                        "useNonDeterministicPaging": "",
+                        "nonDeterministicPagingInfo": ""
+                    },
+                    "columns": [],
+                    "pendingMigration": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Job Result ID",
+                    "type": "text",
+                    "name": "jobResultID",
+                    "description": "Specify the ID of the job whose result details you want to retrieve from Fidelis EDR.",
+                    "tooltip": "Enter Job Result ID to get its result details",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "create_task",
+            "title": "Execute Task",
+            "description": "Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "create_task",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": ""
+            },
+            "parameters": [
+                {
+                    "title": "Package ID",
+                    "type": "text",
+                    "name": "packageId",
+                    "description": "Specify the ID of the script package/playbook you want to execute on Fidelis EDR.",
+                    "placeholder": "e.g ff827a19-bb6e-4eab-b8d2-150f2e094046",
+                    "tooltip": "Enter Package ID for task execution",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "IS Playbook Or Script",
+                    "type": "select",
+                    "options": [
+                        "Playbook",
+                        "Script"
+                    ],
+                    "name": "isplaybook",
+                    "description": "Select whether you want to run a script package or playbook onFidelis EDR.",
+                    "tooltip": "Select an option based on entered package ID is script or a playbook",
+                    "required": true,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Endpoint IDs",
+                    "type": "text",
+                    "name": "endpoints",
+                    "description": "Specify the IDs of the endpoints in the \"CSV\" or \"List\" format on which you want to execute the task.",
+                    "tooltip": "Enter list of Endpoints on which the task execution should happen",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "placeholder": "e.g [\"0d065003-7df5-47c8-98eb-aaaa04e0eb59\",\"c80dbb3b-4a8f-4bb9-8e9f-aaaa04d838cd\"]"
+                }
+            ]
+        },
+        {
+            "operation": "get_installed_software",
+            "title": "Get Installed Software",
+            "description": "Retrieves information installed software.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_installed_software",
+            "output_schema": {
+                "success": true,
+                "error": {
+                    "statusCode": 0,
+                    "message": "string"
+                },
+                "data": {
+                    "entities": [
+                        {
+                            "installSource": "string",
+                            "installLocation": "string",
+                            "installDate": "",
+                            "uninstallString": "string",
+                            "canUninstall": true,
+                            "installedSoftwareKey": "string",
+                            "name": "string",
+                            "publisher": "string",
+                            "version": "string",
+                            "hasCVE": true,
+                            "cveCount": 0,
+                            "cveHighestScore": 0,
+                            "cveList": "string",
+                            "highestCVESeverity": 0,
+                            "cveSeverity": 0
+                        }
+                    ],
+                    "totalCount": 0
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointID",
+                    "description": "Specify the ID of an endpoint that you want to delete from Fidelis EDR.",
+                    "tooltip": "Enter the endpoint ID which you wants to delete",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "placeholder": "Eg: dj3h3-s2hdh-123bd-1f22v-2123"
+                },
+                {
+                    "title": "Search String",
+                    "type": "text",
+                    "name": "facetSearch",
+                    "description": "Specify a filter that you want to apply to the results of this operation. By default, this is set to an \"empty\" string",
+                    "tooltip": "A filter applied on results of the get operation. Defaults to empty string ",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Offset",
+                    "type": "integer",
+                    "name": "skip",
+                    "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say alerts starting from the 10th alert. By default, this is set as \"0\".",
+                    "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": 0
+                },
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "take",
+                    "description": "Limit the number of alerts to return in response. default is set to 1000",
+                    "tooltip": "Limit the number of alerts to return in response. default is set to 1000",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": 1000
+                },
+                {
+                    "title": "Sort",
+                    "type": "text",
+                    "name": "sort",
+                    "placeholder": "e.g id Descending or 0 ,1",
+                    "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
+                    "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_alert_responses",
+            "title": "Get Alert Responses",
+            "description": "Retrieves information alert responses.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_alert_responses",
+            "output_schema": {
+                "success": true,
+                "error": null,
+                "data": {
+                    "alertResponseInfos": [],
+                    "totalCount": 0
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Search",
+                    "type": "text",
+                    "name": "search",
+                    "description": "Specify a filter that you want to apply to the results of this operation. By default, this is set to an \"empty\" string",
+                    "tooltip": "A filter applied on results of the get operation. Defaults to empty string ",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Offset",
+                    "type": "integer",
+                    "name": "offset",
+                    "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say alerts starting from the 10th alert. By default, this is set as \"0\".",
+                    "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": 0
+                },
+                {
+                    "title": "Columns",
+                    "type": "text",
+                    "name": "columns",
+                    "description": "Specify the columns  alerts.",
+                    "tooltip": "Specify the columns  alerts.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                },
+                {
+                    "title": "Limit",
+                    "type": "integer",
+                    "name": "limit",
+                    "description": "Specify the maximum number of alerts that you want this operation to return in the response.By default, this is set to \"all\" alerts.",
+                    "tooltip": "Limit the number of alerts to return in response. default is set to 1000",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "value": 1000
+                },
+                {
+                    "title": "Sort",
+                    "type": "text",
+                    "name": "sort",
+                    "placeholder": "e.g id Descending or 0,1",
+                    "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
+                    "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object.",
+                    "required": false,
+                    "editable": true,
+                    "visible": true
+                }
+            ]
+        },
+        {
+            "operation": "get_endpoints_by_search_query",
+            "title": "Get Endpoints By Search Query",
+            "description": "Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_endpoints_by_search_query",
+            "output_schema": {
+                "success": "",
+                "error": "",
+                "data": {
+                    "entities": [
+                        {
+                            "id": "",
+                            "hostName": "",
+                            "ipAddress": "",
+                            "externalAddress": "",
+                            "description": "",
+                            "lastContactDate": "",
+                            "agentInstalled": "",
+                            "agentVersion": "",
+                            "os": "",
+                            "macAddress": "",
+                            "aV_Enabled": "",
+                            "eventsStopped": "",
+                            "locality": "",
+                            "groupList": "",
+                            "isGroupMember": "",
+                            "agentConnected": "",
+                            "isolated": "",
+                            "osType": "",
+                            "osArch": "",
+                            "agentTag": "",
+                            "createdDate": "",
+                            "avSigVersion": "",
+                            "advMalwareVersion": "",
+                            "aR_Enabled": "",
+                            "events_Enabled": "",
+                            "agentId": "",
+                            "groups": "",
+                            "processorName": "",
+                            "processorCount": "",
+                            "processorSpeedInMhz": "",
+                            "processorNumOfCores": "",
+                            "processorNumOfLogicalProcessors": "",
+                            "ramSize": "",
+                            "flag": "",
+                            "createdByType": "",
+                            "interfaceIPs": "",
+                            "agentScoreboardHash": "",
+                            "investigativeModeEnabled": "",
+                            "investigativeModeDuration": "",
+                            "investigativeModeStartTime": "",
+                            "eventsVersion": "",
+                            "activeDirectoryId": "",
+                            "lastAvScanDate": "",
+                            "motherboardSerial": "",
+                            "assetTag": "",
+                            "manufacturer": "",
+                            "model": "",
+                            "protectStatus": "",
+                            "hasAllAuthCerts": "",
+                            "hasAllCommCerts": ""
+                        }
+                    ],
+                    "totalCount": ""
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Start Range",
+                    "type": "integer",
+                    "name": "startRange",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": 0,
+                    "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records"
+                },
+                {
+                    "title": "Count",
+                    "type": "integer",
+                    "name": "count",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": 1000,
+                    "tooltip": "The number of endpoints to return in response"
+                },
+                {
+                    "title": "Search",
+                    "type": "text",
+                    "name": "search",
+                    "required": true,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "Sort",
+                    "type": "text",
+                    "name": "sort",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "0",
+                    "tooltip": "Sorts the result before applying limit and offset. Examples: hostname, hostname descending, createdDate, createdDate descending."
+                },
+                {
+                    "title": "Access Type",
+                    "type": "select",
+                    "name": "accessType",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "0",
+                    "options": [
+                        "0",
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                }
+            ],
+            "open": false
         }
-      ]
-    }
-  ]
+    ]
 }

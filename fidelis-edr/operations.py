@@ -1,9 +1,9 @@
-""" Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
-
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
 import requests, json
 import base64, os
 from connectors.cyops_utilities.builtins import  upload_file_to_cyops
@@ -241,6 +241,35 @@ def create_task(config, params):
     return fa.make_api_call(endpoint='jobs/createTask', method='POST', data=json.dumps(body))
 
 
+def get_installed_software(config, params):
+    fa = Fidelis(config)
+    params = get_params(params)
+    endpoint_id = params.pop('endpointID')
+    endpoint = f'installedSoftware/{endpoint_id}'
+    if not params.get('take'):
+        params['take'] = 1000
+    return fa.make_api_call(endpoint=endpoint, params=params)
+
+
+def get_alert_responses(config, params):
+    fa = Fidelis(config)
+    params = get_params(params)
+    if not params.get('limit'):
+        params['limit'] = 1000
+    return fa.make_api_call(endpoint='alertresponses', params=params)
+
+
+def get_endpoints_by_search_query(config, params):
+    fa = Fidelis(config)
+    start_range = str(params.get('startRange'))
+    count = str(params.get('count'))
+    sort = str(params.get('sort'))
+    access_type = str(params.get('accessType'))
+    search = params.get('search')
+    endpoint = f'endpoints/v2/{start_range}/{count}/{sort}?search={search}&accessType={access_type}'
+    return fa.make_api_call(endpoint=endpoint)
+
+
 operations = {
     'get_alerts': get_alerts,
     'get_endpoints': get_endpoints,
@@ -257,5 +286,8 @@ operations = {
     'get_script_packages_template': get_script_packages_template,
     'execute_script_package': execute_script_package,
     'script_job_results': script_job_results,
-    'create_task': create_task
+    'create_task': create_task,
+    'get_installed_software': get_installed_software,
+    'get_alert_responses': get_alert_responses,
+    'get_endpoints_by_search_query': get_endpoints_by_search_query
 }

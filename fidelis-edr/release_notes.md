@@ -1,18 +1,5 @@
 #### What's Added
 - Added the following new operations and playbooks:
-  - Get Alerts
-  - Get Endpoints
-  - Get Endpoint By Name
-  - Delete Endpoint
-  - Get Playbooks
-  - Get Playbooks And Scripts
-  - Get Playbooks Details
-  - Get API version Information
-  - Get Script Packages
-  - Get Script Packages File
-  - Get Script Packages Manifest
-  - Get Script Packages Metadata
-  - Get Script Packages Template
-  - Execute Script Package
-  - Get Script Job Results
-  - Execute Task
+  - Get Alert Responses
+  - Get Installed Software
+  - Get Endpoints By Search Query

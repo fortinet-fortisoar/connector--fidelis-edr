@@ -110,6 +110,13 @@ def get_params(params):
     return params
 
 
+def str_to_list_of_dicts(input_str):
+    input_str = input_str.replace("'", "\"")
+    if not input_str.startswith('[') and not input_str.endswith(']'):
+        input_str = f"[{input_str}]"
+    return json.loads(input_str)
+
+
 def get_alerts(config, params):
     fa = Fidelis(config)
     endpoint = 'alerts/getalertsV2'
@@ -270,6 +277,32 @@ def get_endpoints_by_search_query(config, params):
     return fa.make_api_call(endpoint=endpoint)
 
 
+def get_job_status_by_job_id(config, params):
+    fa = Fidelis(config)
+    params = get_params(params)
+    return fa.make_api_call(endpoint='jobs/getjobstatus?jobResultId=' + params.get('jobResultID'))
+
+
+def create_custom_task(config, params):
+    fa = Fidelis(config)
+    body = {
+        "packageId": params.get('packageId'),
+        "endpoints": str_to_list_for_stings(params.get('endpoints')),
+        "isPlaybook": 'true' if params.get('isplaybook') == 'Playbook' else 'false',
+        "taskOptions": [
+            {
+                "integrationOutputFormat": params.get('integration_output_format'),
+                "scriptId": params.get('script_id'),
+                "questions": str_to_list_of_dicts(params.get('questions')),
+                "jsonQuestions": params.get('json_questions', None),
+                "timeoutInSeconds": params.get('timeout_in_Seconds'),
+                "queueExpirationInhours": params.get('queue_expiration_in_hours', None)
+            }
+        ]
+    }
+    return fa.make_api_call(endpoint='jobs/createTask', method='POST', data=json.dumps(body))
+
+
 operations = {
     'get_alerts': get_alerts,
     'get_endpoints': get_endpoints,
@@ -289,5 +322,8 @@ operations = {
     'create_task': create_task,
     'get_installed_software': get_installed_software,
     'get_alert_responses': get_alert_responses,
-    'get_endpoints_by_search_query': get_endpoints_by_search_query
+    'get_endpoints_by_search_query': get_endpoints_by_search_query,
+    'get_job_status_by_job_id': get_job_status_by_job_id,
+    'create_custom_task': create_custom_task
+
 }

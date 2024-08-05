@@ -22,11 +22,13 @@ Following enhancements have been made to the Fidelis EDR Connector in version 1.
 <li><p>Get Alert Responses</p></li>
 <li><p>Get Installed Software</p></li>
 <li><p>Get Endpoints By Search Query</p></li>
+<li><p>Get Job Status By Job ID</p></li>
+<li><p>Create Custom Task</p></li>
 </ul></li>
 </ul>
 ## Installing the connector
 <p>From FortiSOAR&trade; 5.0.0 onwards, use the <strong>Connector Store</strong> to install the connector. For the detailed procedure to install a connector, click <a href="https://docs.fortinet.com/document/fortisoar/0.0.0/installing-a-connector/1/installing-a-connector" target="_top">here</a>.<br>You can also use the following <code>yum</code> command as a root user to install connectors from an SSH session:</p>
-`yum install cyops-connector-fidelis-edr`
+`yum install cyops-connector-fidelis-edr_dev`
 
 ## Prerequisites to configuring the connector
 - You must have the URL of Fidelis EDR server to which you will connect and perform automated operations and credentials to access that server.
@@ -63,9 +65,11 @@ The following automated operations can be included in playbooks and you can also
 <tr><td>Execute Script Package<br></td><td>Executes a specific script package on Fidelis EDR based on the script package ID, timeout value, host information, and other input parameters you have specified.<br></td><td>execute_script_package <br/>Investigation<br></td></tr>
 <tr><td>Get Script Job Results<br></td><td>Retrieves the results of a script job from Fidelis EDR based on the job result ID you have specified.<br></td><td>script_job_results <br/>Investigation<br></td></tr>
 <tr><td>Execute Task<br></td><td>Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.<br></td><td>create_task <br/>Investigation<br></td></tr>
-<tr><td>Get Installed Software<br></td><td>Retrieves information installed software.<br></td><td>get_installed_software <br/>Investigation<br></td></tr>
-<tr><td>Get Alert Responses<br></td><td>Retrieves information alert responses.<br></td><td>get_alert_responses <br/>Investigation<br></td></tr>
+<tr><td>Get Installed Software<br></td><td>Retrieves a list of all installed Software from Fidelis EDR based on the input parameters you have specified.<br></td><td>get_installed_software <br/>Investigation<br></td></tr>
+<tr><td>Get Alert Responses<br></td><td>Retrieves a list of all alerts responses from Fidelis EDR based on the input parameters you have specified.<br></td><td>get_alert_responses <br/>Investigation<br></td></tr>
 <tr><td>Get Endpoints By Search Query<br></td><td>Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.<br></td><td>get_endpoints_by_search_query <br/>Investigation<br></td></tr>
+<tr><td>Get Job Status By Job ID<br></td><td>Retrieves the results of a script job from Fidelis EDR based on the job ID you have specified.<br></td><td>get_job_status_by_job_id <br/>Investigation<br></td></tr>
+<tr><td>Create Custom Task<br></td><td>Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.<br></td><td>create_custom_task <br/>Investigation<br></td></tr>
 </tbody></table>
 
 ### operation: Get Alerts
@@ -764,10 +768,10 @@ The output contains the following populated JSON schema:
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Start Range<br></td><td>Specify the index of the first item to be returned by this operation. This
 parameter is useful if you want to get a subset of records<br>
-</td></tr><tr><td>Count<br></td><td>The number of endpoints to return in response<br>
-</td></tr><tr><td>Search<br></td><td><br>
-</td></tr><tr><td>Sort<br></td><td>Sorts the result before applying limit and offset. Examples: hostname, hostname descending, createdDate, createdDate descending.<br>
-</td></tr><tr><td>Access Type<br></td><td><br>
+</td></tr><tr><td>Count<br></td><td>Specify the maximum number of endpoints that you want this operation to return in the response.<br>
+</td></tr><tr><td>Search<br></td><td>Specify a filter that you want to apply to the results of this operation. By default, this is set to an "empty" string.<br>
+</td></tr><tr><td>Sort<br></td><td>Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to "id Descending". You can specify the name of any property of the alert object.<br>
+</td></tr><tr><td>Access Type<br></td><td>Specify a access type that you want to apply to the results of this operation. By default, this is set to an "0" string.<br>
 </td></tr></tbody></table>
 
 #### Output
@@ -833,26 +837,85 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "totalCount": ""
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    }
 </code><code><br>}</code>
-## Included playbooks
-The `Sample - fidelis-edr - 1.2.0` playbook collection comes bundled with the Fidelis EDR connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR<sup>TM</sup> after importing the Fidelis EDR connector.
 
-- Delete Endpoint
-- Execute Script Package
-- Execute Task
-- Get API version Information
-- Get Alert Responses
+### operation: Get Job Status By Job ID
+#### Input parameters
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Job Result ID<br></td><td>Specify the ID of the job whose result details you want to retrieve from Fidelis EDR.<br>
+</td></tr></tbody></table>
+
+#### Output
+The output contains the following populated JSON schema:
+<code><br>{
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "success": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "error": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "data": {
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "jobID": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "resultID": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "name": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "startDate": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "endDate": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "createdDate": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "hasSchedule": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "fromScheduledTask": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "status": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "statusCode": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "scriptPackage": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "scriptPackageId": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "playbookId": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "createdBy": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "createdById": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "hasAlert": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "alertName": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "alertId": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "fromPlaybook": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "playbook": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        "order": ""
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    }
+</code><code><br>}</code>
+
+### operation: Create Custom Task
+#### Input parameters
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Package ID<br></td><td>Specify the ID of the script package/playbook you want to execute on Fidelis EDR.<br>
+</td></tr><tr><td>Is Playbook Or Script<br></td><td>Select whether you want to run a script package or playbook on Fidelis EDR.<br>
+</td></tr><tr><td>Endpoint IDs<br></td><td>Specify the IDs of the endpoints in the "CSV" or "List" format on which you want to execute the task.<br>
+</td></tr><tr><td>Integration Output Format<br></td><td>Specify the format for the integration output.<br>
+</td></tr><tr><td>Script ID<br></td><td>Specify the ID of the script to be executed.<br>
+</td></tr><tr><td>Questions<br></td><td>Specify the questions for the task.<br>
+</td></tr><tr><td>Json Questions<br></td><td>Specify the JSON formatted questions.<br>
+</td></tr><tr><td>Timeout In Seconds<br></td><td>Specify the timeout duration in seconds.<br>
+</td></tr><tr><td>Queue Expiration In Hours<br></td><td>Specify the queue expiration duration in hours.<br>
+</td></tr></tbody></table>
+
+#### Output
+The output contains the following populated JSON schema:
+<code><br>{
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "success": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "error": "",
+</code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "data": ""
+</code><code><br>}</code>
+## Included playbooks
+The `Sample - fidelis-edr_dev - 1.2.0` playbook collection comes bundled with the Fidelis EDR connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR<sup>TM</sup> after importing the Fidelis EDR connector.
+
 - Get Alerts
-- Get Endpoint By Name
 - Get Endpoints
-- Get Installed Software
+- Get Endpoint By Name
+- Delete Endpoint
 - Get Playbooks
 - Get Playbooks And Scripts
 - Get Playbooks Details
-- Get Script Job Results
+- Get API version Information
 - Get Script Packages
 - Get Script Packages File
 - Get Script Packages Manifest
 - Get Script Packages Metadata
 - Get Script Packages Template
+- Execute Script Package
+- Get Script Job Results
+- Execute Task
+- Get Installed Software
+- Get Alert Responses
+- Get Endpoints By Search Query
+- Get Job Status By Job ID
+- Create Custom Task
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.

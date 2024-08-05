@@ -3,3 +3,5 @@
   - Get Alert Responses
   - Get Installed Software
   - Get Endpoints By Search Query
+  - Get Job Status By Job ID
+  - Create Custom Task

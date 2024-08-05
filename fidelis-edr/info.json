@@ -1457,7 +1457,7 @@
           "title": "Script ID",
           "type": "text",
           "name": "script_id",
-          "description": "Specify the ID of the script to be executed.",
+          "description": "Specify the script ID to be executed.",
           "tooltip": "Enter the script ID",
           "required": true,
           "editable": true,

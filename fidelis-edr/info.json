@@ -1,5 +1,5 @@
 {
-  "name": "fidelis-edr_dev",
+  "name": "fidelis-edr",
   "version": "1.2.0",
   "label": "Fidelis EDR",
   "description": "Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively so you can accelerate your response and stop adversaries at the point of entry. This connector supports following actions Get Alerts, Get Endpoints, Detete Endpoints, etc",

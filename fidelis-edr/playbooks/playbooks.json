@@ -2,531 +2,44 @@
   "type": "workflow_collections",
   "data": [
     {
+      "uuid": "bb0c3d98-632f-4eaf-961a-82d55613f2de",
       "@type": "WorkflowCollection",
-      "name": "Sample - Fidelis EDR - 1.0.0",
+      "name": "Sample - Fidelis EDR - 1.2.0",
       "description": "Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively so you can accelerate your response and stop adversaries at the point of entry. This connector supports following actions Get Alerts, Get Endpoints, Detete Endpoints, etc",
       "visible": true,
       "image": null,
-      "uuid": "7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-      "id": 98,
-      "deletedAt": null,
-      "importedBy": [],
       "recordTags": [
         "Fidelis",
-        "fidelis-edr"
+        "fidelis-edr_dev"
       ],
       "workflows": [
         {
           "@type": "Workflow",
+          "uuid": "81a5bbcd-48e5-4c24-b554-d2157e480a8a",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
           "triggerLimit": null,
-          "name": "Get Playbooks And Scripts",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get details of Fidelis Playbooks and Scripts from the Fidelis Endpoint EDR server",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/fddd362e-81be-45bb-80d8-37f5186f1116",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Playbooks And Scripts",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "skip": "",
-                  "sort": "",
-                  "take": "",
-                  "filterType": "0 - Script Packages",
-                  "platformFilter": "All"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_playbooks_scripts",
-                "operationTitle": "Get Playbooks And Scripts",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "a09bf266-6b21-44f1-a601-5b0441dad0d4"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "6601d1a4-47cd-4611-94ba-2adf6fb19b79",
-                "title": "Fidelis EDR: Get Playbooks And Scripts",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "fddd362e-81be-45bb-80d8-37f5186f1116"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Playbooks And Scripts",
-              "targetStep": "/api/3/workflow_steps/a09bf266-6b21-44f1-a601-5b0441dad0d4",
-              "sourceStep": "/api/3/workflow_steps/fddd362e-81be-45bb-80d8-37f5186f1116",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "005c0aa6-f70f-4123-8db4-a6a2c18675e0"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "025a22c3-702f-47f6-83f7-e09780286f21",
-          "id": 1356,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Endpoints",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Retrieve information about endpoints from the Fidelis Endpoint EDR server.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/0888799c-3144-48e6-9178-b5122a88f2e1",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "3647d568-a346-4fdb-9aed-375eef5d5c7d",
-                "title": "Fidelis EDR: Get Endpoints",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "0888799c-3144-48e6-9178-b5122a88f2e1"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Endpoints",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "sort": "CreatedDate Descending",
-                  "count": 100,
-                  "startIndex": 0
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_endpoints",
-                "operationTitle": "Get Endpoints",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "cc4b8ac5-8404-49fa-9a37-5892b0d23830"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Endpoints",
-              "targetStep": "/api/3/workflow_steps/cc4b8ac5-8404-49fa-9a37-5892b0d23830",
-              "sourceStep": "/api/3/workflow_steps/0888799c-3144-48e6-9178-b5122a88f2e1",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "c3a9b543-a696-4220-b16e-0f3ac7bdb7fe"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "02aeb0ac-ce2e-4655-837e-77fb9af37463",
-          "id": 1360,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Script Packages Metadata",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get script packages Metadata from the Fidelis Endpoint EDR server based on script ID you have provided.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/eb0d61ca-2473-49e3-a843-019d4f5ec759",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "17b83fcf-8cc9-4750-b478-a2a51fbe2ee5",
-                "title": "Fidelis EDR: Get Script Packages Metadata",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "eb0d61ca-2473-49e3-a843-019d4f5ec759"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Script Packages Metadata",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "scriptID": "ff827a19-bb6e-4eab-b8d2-150f2e094046"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_script_packages_metadata",
-                "operationTitle": "Get Script Packages Metadata",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "fc4090ba-1eab-44c1-b983-8087fb0da6bb"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Script Packages Metadata",
-              "targetStep": "/api/3/workflow_steps/fc4090ba-1eab-44c1-b983-8087fb0da6bb",
-              "sourceStep": "/api/3/workflow_steps/eb0d61ca-2473-49e3-a843-019d4f5ec759",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "6d083076-0f12-459b-83fd-2a4fb272678d"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "042fbabb-b0d0-41ea-8372-d5305cb4f2f4",
-          "id": 1355,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Script Packages File",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get script packages file from the Fidelis Endpoint EDR server based on script ID you have provided.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/c6acee45-5f2f-447f-8fb1-85f2d334a9e7",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Script Packages File",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "scriptID": "ff827a19-bb6e-4eab-b8d2-150f2e094046"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_script_packages_file",
-                "operationTitle": "Get Script Packages File",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "7e3a08a1-c9a6-4d72-9161-5c5b00de8229"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "3d10fc0b-a1d3-4c3c-bf14-9d2845c7f3b6",
-                "title": "Fidelis EDR: Get Script Packages File",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "c6acee45-5f2f-447f-8fb1-85f2d334a9e7"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Script Packages File",
-              "targetStep": "/api/3/workflow_steps/7e3a08a1-c9a6-4d72-9161-5c5b00de8229",
-              "sourceStep": "/api/3/workflow_steps/c6acee45-5f2f-447f-8fb1-85f2d334a9e7",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "e6597e81-47e4-458b-b043-c7d279a78be4"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "0c28d1c2-918e-4175-b606-1eaca696da8a",
-          "id": 1361,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Execute Script Package",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Execute Script Package based on input parameters you have provided",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/d9a63195-f620-4091-b447-37de6c90b179",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Execute Script Package",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "hosts": "172.16.20.161",
-                  "questions": "",
-                  "scriptPackageId": "ff827a19-bb6e-4eab-b8d2-150f2e094046",
-                  "timeoutInSeconds": 100,
-                  "integrationOutputs": ""
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "execute_script_package",
-                "operationTitle": "Execute Script Package",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "3f1f1ef7-813b-4dc7-8625-23b367726040"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "23a49eb5-a9ea-4c98-94db-ffa79e2baef0",
-                "title": "Fidelis EDR: Execute Script Package",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "d9a63195-f620-4091-b447-37de6c90b179"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Execute Script Package",
-              "targetStep": "/api/3/workflow_steps/3f1f1ef7-813b-4dc7-8625-23b367726040",
-              "sourceStep": "/api/3/workflow_steps/d9a63195-f620-4091-b447-37de6c90b179",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "64d88cc1-6ce3-4537-b64b-c54d8a7c523f"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "4cb08af7-ea61-4550-8036-b887502faf7f",
-          "id": 1348,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
+          "description": "Retrieves a list of all alerts or specific alerts from Fidelis EDR based on the input parameters you have specified.",
           "name": "Get Alerts",
-          "aliasName": null,
           "tag": "#Fidelis EDR",
-          "description": "Get list of alerts from Fidelis based on input parameters you have provided.",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/2f8f25a5-799b-454c-bd8a-a39613f893d3",
+          "triggerStep": "/api/3/workflow_steps/571f1abd-4503-4a7f-81f5-d0abdd1eef48",
           "steps": [
             {
+              "uuid": "571f1abd-4503-4a7f-81f5-d0abdd1eef48",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "fc51f3bb-c50e-4d0a-ad5f-2a6698a590a0",
+                "route": "2deef508-1a48-49b2-948d-6e4b81680e16",
                 "title": "Fidelis EDR: Get Alerts",
                 "resources": [
                   "alerts"
@@ -534,317 +47,244 @@
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "2f8f25a5-799b-454c-bd8a-a39613f893d3"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "d9b60f63-f178-439b-a726-fb61defd7317",
               "@type": "WorkflowStep",
               "name": "Get Alerts",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
+                "config": "''",
                 "params": {
-                  "skip": 0,
-                  "sort": "",
-                  "take": "",
-                  "endDate": "",
-                  "startDate": "",
-                  "facetSearch": ""
+                  "skip": "0",
+                  "take": 1000
                 },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
                 "operation": "get_alerts",
                 "operationTitle": "Get Alerts",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
               },
-              "status": null,
+              "left": "188",
               "top": "120",
-              "left": "180",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "2fb8b0b5-bf4f-4dfb-8ece-d6698cd7e054"
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
+              "uuid": "b8e75912-e6c0-4213-bd1f-c08d443b1841",
+              "label": null,
+              "isExecuted": false,
               "name": "Start-> Get Alerts",
-              "targetStep": "/api/3/workflow_steps/2fb8b0b5-bf4f-4dfb-8ece-d6698cd7e054",
-              "sourceStep": "/api/3/workflow_steps/2f8f25a5-799b-454c-bd8a-a39613f893d3",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "89077402-24f7-4c30-b19c-7f4af07d6582"
+              "sourceStep": "/api/3/workflow_steps/571f1abd-4503-4a7f-81f5-d0abdd1eef48",
+              "targetStep": "/api/3/workflow_steps/d9b60f63-f178-439b-a726-fb61defd7317"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "56a9a140-8def-4399-b4c7-0e03675cb3ae",
-          "id": 1352,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
           ]
         },
         {
           "@type": "Workflow",
+          "uuid": "e490087f-1b68-44ae-bcbf-6cbfaa2bad2a",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
           "triggerLimit": null,
-          "name": "Get Playbooks Details",
-          "aliasName": null,
+          "description": "Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.",
+          "name": "Get Endpoints",
           "tag": "#Fidelis EDR",
-          "description": "Get playbook details by playbook ID the Fidelis Endpoint EDR server",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/49a8463a-71ed-4ca1-a6cf-190828c77f3d",
+          "triggerStep": "/api/3/workflow_steps/9ecbe998-f010-4589-945d-1d52b9d0a7e8",
           "steps": [
             {
+              "uuid": "9ecbe998-f010-4589-945d-1d52b9d0a7e8",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "b9b07768-d4fb-46bf-84dd-e7550886abee",
-                "title": "Fidelis EDR: Get Playbooks Details",
+                "route": "1a0ef1b3-48d0-47f7-97bc-8bce232e3f64",
+                "title": "Fidelis EDR: Get Endpoints",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "49a8463a-71ed-4ca1-a6cf-190828c77f3d"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "990876da-7837-40aa-945f-addfebc4b083",
               "@type": "WorkflowStep",
-              "name": "Get Playbooks Details",
+              "name": "Get Endpoints",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
+                "config": "''",
                 "params": {
-                  "id": "b14d4e42-57b2-4c68-944a-5827b10dfd1c"
+                  "startIndex": 0
                 },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_playbooks_detail",
-                "operationTitle": "Get Playbooks Details",
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_endpoints",
+                "operationTitle": "Get Endpoints",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "e01f2b26-8175-49c5-bddf-6e3db6b78923"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Playbooks Details",
-              "targetStep": "/api/3/workflow_steps/e01f2b26-8175-49c5-bddf-6e3db6b78923",
-              "sourceStep": "/api/3/workflow_steps/49a8463a-71ed-4ca1-a6cf-190828c77f3d",
+              "uuid": "7a3eeeef-6013-4e15-b1e5-1ca1aa8888a3",
               "label": null,
               "isExecuted": false,
-              "uuid": "143a29b1-dbe1-4bb1-90c2-c428f4520ae3"
+              "name": "Start-> Get Endpoints",
+              "sourceStep": "/api/3/workflow_steps/9ecbe998-f010-4589-945d-1d52b9d0a7e8",
+              "targetStep": "/api/3/workflow_steps/990876da-7837-40aa-945f-addfebc4b083"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "830abcb5-e1c6-4b1c-a37c-62d8dbc83823",
-          "id": 1350,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
           ]
         },
         {
           "@type": "Workflow",
+          "uuid": "416f2aa2-f883-42da-895f-9287ff3ff8d5",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
           "triggerLimit": null,
-          "name": "Get Playbooks",
-          "aliasName": null,
+          "description": "Retrieves theIDs of specific endpoints from Fidelis EDR based on the endpoint names you have specified.",
+          "name": "Get Endpoint By Name",
           "tag": "#Fidelis EDR",
-          "description": "Get list of playbooks and its details from the Fidelis Endpoint EDR server",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/cb2b0cc6-f7c0-41ed-a3df-179902a3f1f5",
+          "triggerStep": "/api/3/workflow_steps/8763e357-8b38-47d1-844a-3f9b0fabb270",
           "steps": [
             {
-              "@type": "WorkflowStep",
-              "name": "Get Playbooks",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "take": "100"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_playbooks",
-                "operationTitle": "Get Playbooks",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "8676b903-8878-4197-8663-50776d931d57"
-            },
-            {
+              "uuid": "8763e357-8b38-47d1-844a-3f9b0fabb270",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "7e939fd3-4511-4685-b9df-87eb029dabef",
-                "title": "Fidelis EDR: Get Playbooks",
+                "route": "8560a1b7-9820-46dd-a1c0-c4f73af5ca52",
+                "title": "Fidelis EDR: Get Endpoint By Name",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "cb2b0cc6-f7c0-41ed-a3df-179902a3f1f5"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "d941397c-2596-4eea-a240-6773b05c92b9",
+              "@type": "WorkflowStep",
+              "name": "Get Endpoint By Name",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_endpoints_by_name",
+                "operationTitle": "Get Endpoint By Name",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Playbooks",
-              "targetStep": "/api/3/workflow_steps/8676b903-8878-4197-8663-50776d931d57",
-              "sourceStep": "/api/3/workflow_steps/cb2b0cc6-f7c0-41ed-a3df-179902a3f1f5",
+              "uuid": "4d17050d-d520-4a26-a545-6d7f51744baa",
               "label": null,
               "isExecuted": false,
-              "uuid": "f6f4427f-1408-479a-967d-922ed99c7dd9"
+              "name": "Start-> Get Endpoint By Name",
+              "sourceStep": "/api/3/workflow_steps/8763e357-8b38-47d1-844a-3f9b0fabb270",
+              "targetStep": "/api/3/workflow_steps/d941397c-2596-4eea-a240-6773b05c92b9"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "85cda2b1-6113-493f-bcee-3790fd6096d0",
-          "id": 1349,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
           ]
         },
         {
           "@type": "Workflow",
+          "uuid": "df10bd00-836e-4180-bf12-8c86c77864e7",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
           "triggerLimit": null,
+          "description": "Deletes specific endpoints from Fidelis EDR based on the endpoint IDs you have specified.",
           "name": "Delete Endpoint",
-          "aliasName": null,
           "tag": "#Fidelis EDR",
-          "description": "Delete an endpoint by endpoint ID from the Fidelis Endpoint EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/bc4fcae2-c5b9-4b10-87ce-2ed6663014f5",
+          "triggerStep": "/api/3/workflow_steps/8b30d933-0794-40de-a3ea-d91c11a69b21",
           "steps": [
             {
-              "@type": "WorkflowStep",
-              "name": "Delete Endpoint",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "endpointID": "eda86c72-604a-4042-9a5f-62de1bdcea98"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "delete_endpoint",
-                "operationTitle": "Delete Endpoint",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "5bd1895f-fdd8-479e-a1bd-3950207aeede"
-            },
-            {
+              "uuid": "8b30d933-0794-40de-a3ea-d91c11a69b21",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "f8aff9df-2f2c-4c3d-9e7b-be4d9e03ccbf",
+                "route": "acd12d9e-1dfb-43d0-9a00-4772d0270e9b",
                 "title": "Fidelis EDR: Delete Endpoint",
                 "resources": [
                   "alerts"
@@ -855,472 +295,322 @@
                     "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "bc4fcae2-c5b9-4b10-87ce-2ed6663014f5"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Delete Endpoint",
-              "targetStep": "/api/3/workflow_steps/5bd1895f-fdd8-479e-a1bd-3950207aeede",
-              "sourceStep": "/api/3/workflow_steps/bc4fcae2-c5b9-4b10-87ce-2ed6663014f5",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "26745c9d-cc53-44a5-90c4-ee3038899b09"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "88aff826-5346-4eec-8ebb-7f2da1cd6411",
-          "id": 1354,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Script Packages Template",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get Script Package Template from the Fidelis Endpoint EDR server based on script ID you have provided.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/966e72b9-fd62-44df-bbc1-7cb8ce420300",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Script Packages Template",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "scriptID": "ff827a19-bb6e-4eab-b8d2-150f2e094046"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_script_packages_template",
-                "operationTitle": "Get Script Packages Template",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "58e932f0-10e8-408a-82c8-e91ba616d118"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "d34ec5fd-22f2-49af-a82b-497a511ae08c",
               "@type": "WorkflowStep",
-              "name": "Start",
+              "name": "Delete Endpoint",
               "description": null,
-              "arguments": {
-                "route": "8f0874f0-d160-4099-b324-57734f4db34d",
-                "title": "Fidelis EDR: Get Script Packages Template",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
               "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "966e72b9-fd62-44df-bbc1-7cb8ce420300"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Script Packages Template",
-              "targetStep": "/api/3/workflow_steps/58e932f0-10e8-408a-82c8-e91ba616d118",
-              "sourceStep": "/api/3/workflow_steps/966e72b9-fd62-44df-bbc1-7cb8ce420300",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "71dd0086-0208-43ca-9dd8-b202508415e0"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "8e7f030f-2dc9-4e1b-b460-4b2e8e28ef72",
-          "id": 1353,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Script Job Results",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get Job Results using result ID.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/5b7d722b-8f03-4ec6-9b47-f843c33bba64",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Script Job Results",
-              "description": null,
               "arguments": {
                 "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "jobResultID": "7cd5a5a5-09e7-4b31-baee-af4e025c2f8e"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "script_job_results",
-                "operationTitle": "Get Script Job Results",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "180",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "48aab09c-ed65-4025-92a8-1ff09737e11e"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "41d39087-394f-417f-9d36-27f78f473e4f",
-                "title": "Fidelis EDR: Get Script Job Results",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "5b7d722b-8f03-4ec6-9b47-f843c33bba64"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Script Job Results",
-              "targetStep": "/api/3/workflow_steps/48aab09c-ed65-4025-92a8-1ff09737e11e",
-              "sourceStep": "/api/3/workflow_steps/5b7d722b-8f03-4ec6-9b47-f843c33bba64",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "28fa0bfa-cdff-4602-b688-a083a621bd52"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "90a59cc4-c706-45b0-ad89-61a36c1ae225",
-          "id": 1347,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Execute Task",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Execute a task (run a script job or a playbook) in the Fidelis Endpoint EDR server.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/c371a9ee-6e8d-4a15-8e28-e8fc35de67f2",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "d3bc4167-6806-43a1-98ea-0bea12243a11",
-                "title": "Fidelis EDR: Execute Task",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "c371a9ee-6e8d-4a15-8e28-e8fc35de67f2"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Execute Task",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "endpoints": "eda86c72-604a-4042-9a5f-62de1bdcea98",
-                  "packageId": "ff827a19-bb6e-4eab-b8d2-150f2e094046",
-                  "isplaybook": "Script"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "create_task",
-                "operationTitle": "Execute Task",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "180",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "d08e591a-2944-48ea-a0ab-cd40cb337a4c"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Execute Task",
-              "targetStep": "/api/3/workflow_steps/d08e591a-2944-48ea-a0ab-cd40cb337a4c",
-              "sourceStep": "/api/3/workflow_steps/c371a9ee-6e8d-4a15-8e28-e8fc35de67f2",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "5361d93f-0544-442c-8174-213302a1169e"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "c3cc673d-d408-487c-acfd-a8971ccaede5",
-          "id": 1359,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Script Packages Manifest",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get script packages Manifest from the Fidelis Endpoint EDR server based on script ID you have provided.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/5e18a7e9-73ea-45ab-9256-234b83ba10a1",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Script Packages Manifest",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "scriptID": "ff827a19-bb6e-4eab-b8d2-150f2e094046"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_script_packages_manifest",
-                "operationTitle": "Get Script Packages Manifest",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "4e7c4cf0-fccc-46cc-8195-1cfdffec03b1"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "6f15f05d-b2cb-4d25-9ab1-1195e35bad42",
-                "title": "Fidelis EDR: Get Script Packages Manifest",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "5e18a7e9-73ea-45ab-9256-234b83ba10a1"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start-> Get Script Packages Manifest",
-              "targetStep": "/api/3/workflow_steps/4e7c4cf0-fccc-46cc-8195-1cfdffec03b1",
-              "sourceStep": "/api/3/workflow_steps/5e18a7e9-73ea-45ab-9256-234b83ba10a1",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "b65c6517-d7c7-4e4d-9988-fa7722725c2b"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "c72207a3-931a-4be8-a9b7-79be5b604e78",
-          "id": 1358,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get API version Information",
-          "aliasName": null,
-          "tag": "#Fidelis EDR",
-          "description": "Get API version information from Fidelis Endpoint EDR server",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/d09e006d-0a8a-45eb-b706-a59d01a82276",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get API version Information",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
+                "config": "''",
                 "params": [],
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_api_info",
-                "operationTitle": "Get API version Information",
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "delete_endpoint",
+                "operationTitle": "Delete Endpoint",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "86c69ddc-129a-4d86-b82d-fa8606958083"
-            },
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
             {
+              "@type": "WorkflowRoute",
+              "uuid": "1d0ea437-f028-4d5e-9720-a67dba7154c1",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Delete Endpoint",
+              "sourceStep": "/api/3/workflow_steps/8b30d933-0794-40de-a3ea-d91c11a69b21",
+              "targetStep": "/api/3/workflow_steps/d34ec5fd-22f2-49af-a82b-497a511ae08c"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "ad4dff25-6cce-476d-a9b0-90610c077a77",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves a list of playbooks and their details from Fidelis EDR.",
+          "name": "Get Playbooks",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/18c8d35c-b11d-424b-ad01-16ef87a85eb3",
+          "steps": [
+            {
+              "uuid": "18c8d35c-b11d-424b-ad01-16ef87a85eb3",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "7d3abbd4-39db-433e-bddf-55147e0fa895",
+                "route": "16f5bd04-223e-42ac-9d55-72a3789fcb2b",
+                "title": "Fidelis EDR: Get Playbooks",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "c96072af-302e-4fd7-9118-397c5e752b77",
+              "@type": "WorkflowStep",
+              "name": "Get Playbooks",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "take": "100"
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_playbooks",
+                "operationTitle": "Get Playbooks",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e5e3df0a-4a26-4ce3-ad16-bc42427d9fee",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Playbooks",
+              "sourceStep": "/api/3/workflow_steps/18c8d35c-b11d-424b-ad01-16ef87a85eb3",
+              "targetStep": "/api/3/workflow_steps/c96072af-302e-4fd7-9118-397c5e752b77"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6b02777e-74f2-4a95-9d73-79790d3adb76",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves details of all Fidelis playbooks and scripts or specific Fidelis playbooks and scripts from the Fidelis EDR based on the input parameters you have specified.",
+          "name": "Get Playbooks And Scripts",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/75b62bcd-d759-4953-a58c-0fee3518c260",
+          "steps": [
+            {
+              "uuid": "75b62bcd-d759-4953-a58c-0fee3518c260",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "6c020c07-3a4d-4e30-804f-54fc443a3f6a",
+                "title": "Fidelis EDR: Get Playbooks And Scripts",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "5b12639f-e9b4-40ec-90a9-34c249ae1db7",
+              "@type": "WorkflowStep",
+              "name": "Get Playbooks And Scripts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "filterType": "2 - Script Packages",
+                  "platformFilter": "All",
+                  "sort": "name ascending"
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_playbooks_scripts",
+                "operationTitle": "Get Playbooks And Scripts",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "f63f3d6e-d5bc-488b-9f10-8be531e6d5c2",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Playbooks And Scripts",
+              "sourceStep": "/api/3/workflow_steps/75b62bcd-d759-4953-a58c-0fee3518c260",
+              "targetStep": "/api/3/workflow_steps/5b12639f-e9b4-40ec-90a9-34c249ae1db7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "f5f69078-0e63-435f-877e-df950d42fa8e",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves details for a specific playbook from Fidelis EDR based on the playbook ID you have specified.",
+          "name": "Get Playbooks Details",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/4af34ca0-e072-4a5f-b65e-6b583cbbdcd6",
+          "steps": [
+            {
+              "uuid": "4af34ca0-e072-4a5f-b65e-6b583cbbdcd6",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "1406c303-2044-4ced-b82c-bc5b508e87dc",
+                "title": "Fidelis EDR: Get Playbooks Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "bd1b9bac-35c6-495c-bfd0-daf643e356e1",
+              "@type": "WorkflowStep",
+              "name": "Get Playbooks Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_playbooks_detail",
+                "operationTitle": "Get Playbooks Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "aad44c15-b5ce-457f-a83b-d282f6c9dda8",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Playbooks Details",
+              "sourceStep": "/api/3/workflow_steps/4af34ca0-e072-4a5f-b65e-6b583cbbdcd6",
+              "targetStep": "/api/3/workflow_steps/bd1b9bac-35c6-495c-bfd0-daf643e356e1"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d6709e41-912f-4379-887b-da9131077acc",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves information on the API version from Fidelis EDR.",
+          "name": "Get API version Information",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d73d7548-8467-45d8-a9ed-71a4be2ec7d7",
+          "steps": [
+            {
+              "uuid": "d73d7548-8467-45d8-a9ed-71a4be2ec7d7",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "af5ea7d7-f549-43e7-8659-9d60db06ca41",
                 "title": "Fidelis EDR: Get API version Information",
                 "resources": [
                   "alerts"
@@ -1328,70 +618,79 @@
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "d09e006d-0a8a-45eb-b706-a59d01a82276"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "924b7cef-9e4b-46fd-9cda-afa30543427b",
+              "@type": "WorkflowStep",
+              "name": "Get API version Information",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_api_info",
+                "operationTitle": "Get API version Information",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get API version Information",
-              "targetStep": "/api/3/workflow_steps/86c69ddc-129a-4d86-b82d-fa8606958083",
-              "sourceStep": "/api/3/workflow_steps/d09e006d-0a8a-45eb-b706-a59d01a82276",
+              "uuid": "03500926-2fe6-4686-a7ec-48b2062d3ac7",
               "label": null,
               "isExecuted": false,
-              "uuid": "aad219d4-77d5-40fd-a7a3-83bd0d579417"
+              "name": "Start-> Get API version Information",
+              "sourceStep": "/api/3/workflow_steps/d73d7548-8467-45d8-a9ed-71a4be2ec7d7",
+              "targetStep": "/api/3/workflow_steps/924b7cef-9e4b-46fd-9cda-afa30543427b"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "d747ed5c-c498-4099-92c6-e8cc0d18e353",
-          "id": 1346,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
           ]
         },
         {
           "@type": "Workflow",
+          "uuid": "d1e2e984-79b7-4ce8-971f-79cc5ec47fd6",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
           "triggerLimit": null,
+          "description": "Retrieves a list of all script packages from Fidelis EDR.",
           "name": "Get Script Packages",
-          "aliasName": null,
           "tag": "#Fidelis EDR",
-          "description": "Get a list of all script packages from the Fidelis Endpoint EDR server",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/52f38b20-d733-4112-ba8a-664fd4cefb37",
+          "triggerStep": "/api/3/workflow_steps/06713400-0991-4e01-ba69-8c2bc254d49a",
           "steps": [
             {
+              "uuid": "06713400-0991-4e01-ba69-8c2bc254d49a",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "b890d424-a4c8-4241-9a75-05a889ca9bad",
+                "route": "cb5b88df-e39e-44a0-b8d4-54a52c36e94e",
                 "title": "Fidelis EDR: Get Script Packages",
                 "resources": [
                   "alerts"
@@ -1402,166 +701,1036 @@
                     "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "52f38b20-d733-4112-ba8a-664fd4cefb37"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "3ff99e56-e014-4f58-83b4-0229e72f5798",
               "@type": "WorkflowStep",
               "name": "Get Script Packages",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
+                "config": "''",
                 "params": [],
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
                 "operation": "get_script_packages",
                 "operationTitle": "Get Script Packages",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "6de545b3-5c2e-4930-a357-b652d6f48309"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Script Packages",
-              "targetStep": "/api/3/workflow_steps/6de545b3-5c2e-4930-a357-b652d6f48309",
-              "sourceStep": "/api/3/workflow_steps/52f38b20-d733-4112-ba8a-664fd4cefb37",
+              "uuid": "e0793199-6515-42cf-98cf-8fd378a33456",
               "label": null,
               "isExecuted": false,
-              "uuid": "662aae68-fcfc-481f-abdd-c8c1bf4d2a01"
+              "name": "Start-> Get Script Packages",
+              "sourceStep": "/api/3/workflow_steps/06713400-0991-4e01-ba69-8c2bc254d49a",
+              "targetStep": "/api/3/workflow_steps/3ff99e56-e014-4f58-83b4-0229e72f5798"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "e90cdc37-fabe-4eaa-9a1f-5b504794a2d9",
-          "id": 1357,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fidelis",
-            "fidelis-edr"
           ]
         },
         {
           "@type": "Workflow",
+          "uuid": "6bfc3618-ebcc-4cf6-8555-8177d0e4cc86",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
           "triggerLimit": null,
-          "name": "Get Endpoint By Name",
-          "aliasName": null,
+          "description": "Retrieves the specificscript packages file from Fidelis EDR and adds this script file to the \"Attachment Module\" in FortiSOAR based on the script package ID you have specified.",
+          "name": "Get Script Packages File",
           "tag": "#Fidelis EDR",
-          "description": "Get IDs of an endpoint based on endpoint name you have provided from the Fidelis Endpoint EDR server",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1668512595,
-          "collection": "/api/3/workflow_collections/7161ae30-e3ae-4954-a6f2-1717c73ddaa7",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/dd67147a-3e3b-41c6-8777-8e5f45a04dbb",
+          "triggerStep": "/api/3/workflow_steps/cb4b02a6-6ae3-4eb2-91bc-0a7cf878ae7c",
           "steps": [
             {
-              "@type": "WorkflowStep",
-              "name": "Get Endpoint By Name",
-              "description": null,
-              "arguments": {
-                "name": "Fidelis EDR",
-                "config": "df1fc7e4-81f5-4565-b843-955d6dfc9953",
-                "params": {
-                  "nameArray": "training4, DESKTOP-9GRBVUS"
-                },
-                "version": "1.0.0",
-                "connector": "fidelis-edr",
-                "operation": "get_endpoints_by_name",
-                "operationTitle": "Get Endpoint By Name",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "0ed709ee-da9e-473f-92f5-88183176a43f"
-            },
-            {
+              "uuid": "cb4b02a6-6ae3-4eb2-91bc-0a7cf878ae7c",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "da378909-b925-416f-a56d-18d50b98b3bc",
-                "title": "Fidelis EDR: Get Endpoint By Name",
+                "route": "d183e24e-c7b5-430e-acbe-099cb3dd98bc",
+                "title": "Fidelis EDR: Get Script Packages File",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
+                "singleRecordExecution": false,
                 "noRecordExecution": true,
-                "singleRecordExecution": false
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "dd67147a-3e3b-41c6-8777-8e5f45a04dbb"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "85a3a7db-2e3f-4282-b9f3-6052607ffd36",
+              "@type": "WorkflowStep",
+              "name": "Get Script Packages File",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_script_packages_file",
+                "operationTitle": "Get Script Packages File",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Endpoint By Name",
-              "targetStep": "/api/3/workflow_steps/0ed709ee-da9e-473f-92f5-88183176a43f",
-              "sourceStep": "/api/3/workflow_steps/dd67147a-3e3b-41c6-8777-8e5f45a04dbb",
+              "uuid": "9ace3909-108d-4505-9773-6edfc2b479c8",
               "label": null,
               "isExecuted": false,
-              "uuid": "358adc3d-6875-49b6-bcba-f6f5ba3e0b1e"
+              "name": "Start-> Get Script Packages File",
+              "sourceStep": "/api/3/workflow_steps/cb4b02a6-6ae3-4eb2-91bc-0a7cf878ae7c",
+              "targetStep": "/api/3/workflow_steps/85a3a7db-2e3f-4282-b9f3-6052607ffd36"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "ea85e13e-313d-4e45-97bd-9ab7a3255223",
-          "id": 1351,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "87f0d526-d591-402b-9d08-bc1dc794a067",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves the manifest for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
+          "name": "Get Script Packages Manifest",
+          "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr"
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/2d73f74a-9a91-41b8-ac6e-97f37b2cb1c1",
+          "steps": [
+            {
+              "uuid": "2d73f74a-9a91-41b8-ac6e-97f37b2cb1c1",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "34eede8c-951b-4614-9a55-432f85e1f201",
+                "title": "Fidelis EDR: Get Script Packages Manifest",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "1fc6cf08-fd94-43d1-9170-1ae6f9d69301",
+              "@type": "WorkflowStep",
+              "name": "Get Script Packages Manifest",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_script_packages_manifest",
+                "operationTitle": "Get Script Packages Manifest",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "a69ff797-7955-4e70-a949-c21f8b4a2d71",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Script Packages Manifest",
+              "sourceStep": "/api/3/workflow_steps/2d73f74a-9a91-41b8-ac6e-97f37b2cb1c1",
+              "targetStep": "/api/3/workflow_steps/1fc6cf08-fd94-43d1-9170-1ae6f9d69301"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "99edd9c9-9296-4b66-bdd6-c6a973d8afd4",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves the metadata for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
+          "name": "Get Script Packages Metadata",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/37b44d36-8a4c-41c9-8631-ca651b08c50a",
+          "steps": [
+            {
+              "uuid": "37b44d36-8a4c-41c9-8631-ca651b08c50a",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "0fced2ec-6fcc-4399-ab37-e2a4d389de0e",
+                "title": "Fidelis EDR: Get Script Packages Metadata",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "b3cab6b6-6162-4546-a55b-d5388b7795d6",
+              "@type": "WorkflowStep",
+              "name": "Get Script Packages Metadata",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_script_packages_metadata",
+                "operationTitle": "Get Script Packages Metadata",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "3d74aa8e-300a-4778-ad68-449c55d0a280",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Script Packages Metadata",
+              "sourceStep": "/api/3/workflow_steps/37b44d36-8a4c-41c9-8631-ca651b08c50a",
+              "targetStep": "/api/3/workflow_steps/b3cab6b6-6162-4546-a55b-d5388b7795d6"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "4a0fcc4d-ace0-4c00-8125-704f2ed398b9",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves the template for a specificscript package from Fidelis EDR based on the script package ID you have specified.",
+          "name": "Get Script Packages Template",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/98382c9b-a726-4eb1-a7de-9545772e0b04",
+          "steps": [
+            {
+              "uuid": "98382c9b-a726-4eb1-a7de-9545772e0b04",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "174b230f-134b-496e-9dd4-650b2574a849",
+                "title": "Fidelis EDR: Get Script Packages Template",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "4913ee36-bb13-47ee-aa72-8c71c9b06c8d",
+              "@type": "WorkflowStep",
+              "name": "Get Script Packages Template",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_script_packages_template",
+                "operationTitle": "Get Script Packages Template",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "a2c5b06d-4c01-4af2-8335-e31ffc7626ca",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Script Packages Template",
+              "sourceStep": "/api/3/workflow_steps/98382c9b-a726-4eb1-a7de-9545772e0b04",
+              "targetStep": "/api/3/workflow_steps/4913ee36-bb13-47ee-aa72-8c71c9b06c8d"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9aec655b-cc21-449c-abdb-fd8fdb14da60",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Executes a specific script package on Fidelis EDR based on the script package ID, timeout value, host information, and other input parameters you have specified.",
+          "name": "Execute Script Package",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/77e408b5-2987-45ed-a517-80a97efe89c7",
+          "steps": [
+            {
+              "uuid": "77e408b5-2987-45ed-a517-80a97efe89c7",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "9591e3c9-01d0-490a-acf6-7b4d0644c333",
+                "title": "Fidelis EDR: Execute Script Package",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "e98ea701-3a30-4e65-9d69-5a95be690c25",
+              "@type": "WorkflowStep",
+              "name": "Execute Script Package",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "questions": {
+                    "paramNumber": 1,
+                    "question": "Type",
+                    "answer": "",
+                    "isOptional": "false",
+                    "inputType": "text"
+                  }
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "execute_script_package",
+                "operationTitle": "Execute Script Package",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "913a37d2-3971-454a-b14c-a961e1aa9e55",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Execute Script Package",
+              "sourceStep": "/api/3/workflow_steps/77e408b5-2987-45ed-a517-80a97efe89c7",
+              "targetStep": "/api/3/workflow_steps/e98ea701-3a30-4e65-9d69-5a95be690c25"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "220c7733-7d93-476a-a636-64276e63c9eb",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves the results of a script job from Fidelis EDR based on the job result ID you have specified.",
+          "name": "Get Script Job Results",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/7db285dd-1bb2-42fa-b29a-eb05d265dee0",
+          "steps": [
+            {
+              "uuid": "7db285dd-1bb2-42fa-b29a-eb05d265dee0",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "903eeb60-4d0d-43e1-a6df-155af855f005",
+                "title": "Fidelis EDR: Get Script Job Results",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "11a605e5-4fe8-478f-b25c-601ce8721291",
+              "@type": "WorkflowStep",
+              "name": "Get Script Job Results",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "script_job_results",
+                "operationTitle": "Get Script Job Results",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "73f73090-e53e-4a49-915b-1d74b2f4d267",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Script Job Results",
+              "sourceStep": "/api/3/workflow_steps/7db285dd-1bb2-42fa-b29a-eb05d265dee0",
+              "targetStep": "/api/3/workflow_steps/11a605e5-4fe8-478f-b25c-601ce8721291"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d032dc6e-7580-4a15-9ce6-8c09fa82fbe9",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.",
+          "name": "Execute Task",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/48f2005c-7c60-47ad-bb96-fb3b13bff396",
+          "steps": [
+            {
+              "uuid": "48f2005c-7c60-47ad-bb96-fb3b13bff396",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "570e40f8-608e-49c2-9532-7c8e13051dca",
+                "title": "Fidelis EDR: Execute Task",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "50f09190-647f-4702-9234-44cc7d2b8d7f",
+              "@type": "WorkflowStep",
+              "name": "Execute Task",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "create_task",
+                "operationTitle": "Execute Task",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "474e36ad-58bb-44e2-8a46-05876937812b",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Execute Task",
+              "sourceStep": "/api/3/workflow_steps/48f2005c-7c60-47ad-bb96-fb3b13bff396",
+              "targetStep": "/api/3/workflow_steps/50f09190-647f-4702-9234-44cc7d2b8d7f"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "bcccdf59-bbe8-4c99-9e21-91077a754259",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves a list of all installed Software from Fidelis EDR based on the input parameters you have specified.",
+          "name": "Get Installed Software",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/dd5b3e1a-584c-4809-93e5-4f208363297b",
+          "steps": [
+            {
+              "uuid": "dd5b3e1a-584c-4809-93e5-4f208363297b",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "ef66eb80-4d6a-4ede-b166-dfca6d325dc9",
+                "title": "Fidelis EDR: Get Installed Software",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "27ae21a1-e46f-49ff-8678-5936ca3176e7",
+              "@type": "WorkflowStep",
+              "name": "Get Installed Software",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "skip": 0,
+                  "take": 1000
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_installed_software",
+                "operationTitle": "Get Installed Software",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "bf6c0a98-41ce-4ead-a274-54cf113aac29",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Installed Software",
+              "sourceStep": "/api/3/workflow_steps/dd5b3e1a-584c-4809-93e5-4f208363297b",
+              "targetStep": "/api/3/workflow_steps/27ae21a1-e46f-49ff-8678-5936ca3176e7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d0fe72cd-92ac-4975-b374-35cc69a9724b",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves a list of all alerts responses from Fidelis EDR based on the input parameters you have specified.",
+          "name": "Get Alert Responses",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/4deffe3d-1913-483e-ab56-98365a1f200a",
+          "steps": [
+            {
+              "uuid": "4deffe3d-1913-483e-ab56-98365a1f200a",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "624cbe0f-fd61-475a-82e0-1c1c7ddf47a9",
+                "title": "Fidelis EDR: Get Alert Responses",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "076f903b-c352-43fd-b9f9-f38adf2e14e2",
+              "@type": "WorkflowStep",
+              "name": "Get Alert Responses",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "offset": 0,
+                  "limit": 1000
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_alert_responses",
+                "operationTitle": "Get Alert Responses",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "b6c63e80-6417-48f5-939a-81def831c2e9",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Alert Responses",
+              "sourceStep": "/api/3/workflow_steps/4deffe3d-1913-483e-ab56-98365a1f200a",
+              "targetStep": "/api/3/workflow_steps/076f903b-c352-43fd-b9f9-f38adf2e14e2"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9528c56f-829d-4ce5-8212-c0ff92cc8e00",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves information for specific endpoints from Fidelis EDR based on the offset, limit, and other input parameters you have specified.",
+          "name": "Get Endpoints By Search Query",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/82234e80-63f6-469b-a4c5-76c49da564dd",
+          "steps": [
+            {
+              "uuid": "82234e80-63f6-469b-a4c5-76c49da564dd",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "1f6dffcf-738f-4f88-b45d-5fd7b9a4cf5d",
+                "title": "Fidelis EDR: Get Endpoints By Search Query",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "b01d5acf-8688-4c8c-9884-1b43a27acc4f",
+              "@type": "WorkflowStep",
+              "name": "Get Endpoints By Search Query",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "startRange": 0,
+                  "count": 1000,
+                  "sort": 0,
+                  "accessType": "0"
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_endpoints_by_search_query",
+                "operationTitle": "Get Endpoints By Search Query",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c6c7864e-fb54-4ccc-9e82-f4d85f91636a",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Endpoints By Search Query",
+              "sourceStep": "/api/3/workflow_steps/82234e80-63f6-469b-a4c5-76c49da564dd",
+              "targetStep": "/api/3/workflow_steps/b01d5acf-8688-4c8c-9884-1b43a27acc4f"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "a1e6f920-c326-4d56-a503-78d4335f45ff",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Retrieves the results of a script job from Fidelis EDR based on the job ID you have specified.",
+          "name": "Get Job Status By Job ID",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f1a89859-b258-4dde-a8d2-68d8d07b96c7",
+          "steps": [
+            {
+              "uuid": "f1a89859-b258-4dde-a8d2-68d8d07b96c7",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "8accb2ed-be83-4dc7-9ca4-43c9b0179d92",
+                "title": "Fidelis EDR: Get Job Status By Job ID",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "c787ee38-fdf0-475e-a249-bac7c194b083",
+              "@type": "WorkflowStep",
+              "name": "Get Job Status By Job ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": [],
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "get_job_status_by_job_id",
+                "operationTitle": "Get Job Status By Job ID",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "de1c98d5-9a6e-40a8-8f6c-2492629c19da",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Job Status By Job ID",
+              "sourceStep": "/api/3/workflow_steps/f1a89859-b258-4dde-a8d2-68d8d07b96c7",
+              "targetStep": "/api/3/workflow_steps/c787ee38-fdf0-475e-a249-bac7c194b083"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "3ed7f969-7e7d-4cd9-9ed4-f3112c21c40b",
+          "collection": "/api/3/workflow_collections/bb0c3d98-632f-4eaf-961a-82d55613f2de",
+          "triggerLimit": null,
+          "description": "Executes a task (run a script job or a playbook) on Fidelis Endpoint EDR based on the script package IDs and endpoint IDs you have specified.",
+          "name": "Create Custom Task",
+          "tag": "#Fidelis EDR",
+          "recordTags": [
+            "Fidelis",
+            "fidelis-edr_dev"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/1bd609e9-4d00-4202-baab-4e1504f345f0",
+          "steps": [
+            {
+              "uuid": "1bd609e9-4d00-4202-baab-4e1504f345f0",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "a9c34fe2-def3-4f07-a7e6-87b5da6a792c",
+                "title": "Fidelis EDR: Create Custom Task",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "79dec93b-0fb2-4bf6-bea8-ae7fe2748ca2",
+              "@type": "WorkflowStep",
+              "name": "Create Custom Task",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fidelis EDR",
+                "config": "''",
+                "params": {
+                  "packageId": "",
+                  "endpoints": "",
+                  "integration_output_format": "",
+                  "script_id": "",
+                  "questions": "",
+                  "timeout_in_Seconds": 0
+                },
+                "version": "1.2.0",
+                "connector": "fidelis-edr_dev",
+                "operation": "create_custom_task",
+                "operationTitle": "Create Custom Task",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "52d1bd32-0b39-4ffa-8d1b-0e288fc34d4b",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Custom Task",
+              "sourceStep": "/api/3/workflow_steps/1bd609e9-4d00-4202-baab-4e1504f345f0",
+              "targetStep": "/api/3/workflow_steps/79dec93b-0fb2-4bf6-bea8-ae7fe2748ca2"
+            }
           ]
         }
       ]
     }
-  ],
-  "exported_tags": [
-    "Fidelis",
-    "fidelis-edr"
   ]
 }

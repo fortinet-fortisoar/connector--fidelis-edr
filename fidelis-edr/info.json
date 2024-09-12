@@ -1,15 +1,16 @@
 {
   "name": "fidelis-edr",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "label": "Fidelis EDR",
   "description": "Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively so you can accelerate your response and stop adversaries at the point of entry. This connector supports following actions Get Alerts, Get Endpoints, Detete Endpoints, etc",
-  "publisher": "SpryIQ.co",
+  "publisher": "spryIQ.co",
+  "contributor": "Jitesh Rathod",
   "icon_small_name": "fidelis_small.png",
   "icon_large_name": "fidelis_large.png",
-  "cs_approved": true,
+  "cs_approved": false,
   "cs_compatible": true,
   "category": "Endpoint Protection",
-  "help_online": "https://github.com/jitesh-spryiq/connector-fidelis-edr/blob/develop/docs/fidelis-edr-v1-2-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -1051,34 +1052,27 @@
       "category": "investigation",
       "annotation": "get_installed_software",
       "output_schema": {
-        "success": true,
-        "error": {
-          "statusCode": 0,
-          "message": "string"
-        },
-        "data": {
           "entities": [
             {
-              "installSource": "string",
-              "installLocation": "string",
+              "installSource": "",
+              "installLocation": "",
               "installDate": "",
-              "uninstallString": "string",
-              "canUninstall": true,
-              "installedSoftwareKey": "string",
-              "name": "string",
-              "publisher": "string",
-              "version": "string",
-              "hasCVE": true,
-              "cveCount": 0,
-              "cveHighestScore": 0,
-              "cveList": "string",
-              "highestCVESeverity": 0,
-              "cveSeverity": 0
+              "uninstallString": "",
+              "canUninstall": "",
+              "installedSoftwareKey": "",
+              "name": "",
+              "publisher": "",
+              "version": "",
+              "hasCVE": "",
+              "cveCount": "",
+              "cveHighestScore": "",
+              "cveList": "",
+              "highestCVESeverity": "",
+              "cveSeverity": ""
             }
           ],
-          "totalCount": 0
-        }
-      },
+          "totalCount": ""
+        },
       "parameters": [
         {
           "title": "Endpoint ID",
@@ -1106,7 +1100,7 @@
           "title": "Offset",
           "type": "integer",
           "name": "skip",
-          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say alerts starting from the 10th alert. By default, this is set as \"0\".",
+          "description": "Specify the index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records. By default, this is set as \"0\".",
           "tooltip": "Specify the index of the first item to be returned by this operation. This\nparameter is useful if you want to get a subset of records",
           "required": false,
           "editable": true,
@@ -1117,8 +1111,8 @@
           "title": "Limit",
           "type": "integer",
           "name": "take",
-          "description": "Limit the number of alerts to return in response. default is set to 1000",
-          "tooltip": "Limit the number of alerts to return in response. default is set to 1000",
+          "description": "Limit the number of records to return in response. default is set to 1000",
+          "tooltip": "Limit the number of records to return in response. default is set to 1000",
           "required": false,
           "editable": true,
           "visible": true,
@@ -1129,8 +1123,8 @@
           "type": "text",
           "name": "sort",
           "placeholder": "e.g id Descending or 0 ,1",
-          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
-          "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object.",
+          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the data object.",
+          "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the data object.",
           "required": false,
           "editable": true,
           "visible": true
@@ -1145,13 +1139,9 @@
       "category": "investigation",
       "annotation": "get_alert_responses",
       "output_schema": {
-        "success": true,
-        "error": null,
-        "data": {
           "alertResponseInfos": [],
-          "totalCount": 0
-        }
-      },
+          "totalCount": ""
+        },
       "parameters": [
         {
           "title": "Search",
@@ -1179,7 +1169,7 @@
           "title": "Columns",
           "type": "text",
           "name": "columns",
-          "description": "Specify the columns  alerts.",
+          "description": "Specify the columns alerts.",
           "tooltip": "Specify the columns  alerts.",
           "required": false,
           "editable": true,
@@ -1218,9 +1208,6 @@
       "category": "investigation",
       "annotation": "get_endpoints_by_search_query",
       "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
           "entities": [
             {
               "id": "",
@@ -1276,8 +1263,7 @@
             }
           ],
           "totalCount": ""
-        }
-      },
+        },
       "parameters": [
         {
           "title": "Start Range",
@@ -1320,8 +1306,8 @@
           "visible": true,
           "editable": true,
           "value": 0,
-          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the alert object.",
-          "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the alert object."
+          "description": "Specify the property name and order (Ascending or Descending) to sort the results retrieved by this operation, before applying take and skip. By default, this is set to \"id Descending\". You can specify the name of any property of the data object.",
+          "tooltip": "Sorts the result before applying take and skip. Defaults to \"id Descending\". Can be any property name of the data object."
         },
         {
           "title": "Access Type",
@@ -1350,9 +1336,6 @@
       "category": "investigation",
       "annotation": "get_job_status_by_job_id",
       "output_schema": {
-        "success": "",
-        "error": "",
-        "data": {
           "jobID": "",
           "resultID": "",
           "name": "",
@@ -1374,8 +1357,7 @@
           "fromPlaybook": "",
           "playbook": "",
           "order": ""
-        }
-      },
+        },
       "parameters": [
         {
           "title": "Job Result ID",
@@ -1397,11 +1379,7 @@
       "enabled": true,
       "category": "investigation",
       "annotation": "create_custom_task",
-      "output_schema": {
-        "success": "",
-        "error": "",
-        "data": ""
-      },
+      "output_schema": "",
       "parameters": [
         {
           "title": "Package ID",

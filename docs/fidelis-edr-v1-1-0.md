@@ -4,7 +4,7 @@ Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively 
 
 ### Version information
 
-Connector Version: 1.2.0
+Connector Version: 1.1.0
 
 FortiSOAR&trade; Version Tested on: 6.4.4-3164 and later
 
@@ -12,9 +12,9 @@ Fidelis EDR Version Tested on:
 
 Authored By: SpryIQ.co
 
-Certified: Yes
-## Release Notes for version 1.2.0
-Following enhancements have been made to the Fidelis EDR Connector in version 1.2.0:
+Certified: No
+## Release Notes for version 1.1.0
+Following enhancements have been made to the Fidelis EDR Connector in version 1.1.0:
 <ul>
 <li><p>Added the following new operations and playbooks:</p>
 
@@ -28,7 +28,7 @@ Following enhancements have been made to the Fidelis EDR Connector in version 1.
 </ul>
 ## Installing the connector
 <p>From FortiSOAR&trade; 5.0.0 onwards, use the <strong>Connector Store</strong> to install the connector. For the detailed procedure to install a connector, click <a href="https://docs.fortinet.com/document/fortisoar/0.0.0/installing-a-connector/1/installing-a-connector" target="_top">here</a>.<br>You can also use the following <code>yum</code> command as a root user to install connectors from an SSH session:</p>
-`yum install cyops-connector-fidelis-edr_dev`
+`yum install cyops-connector-fidelis-edr`
 
 ## Prerequisites to configuring the connector
 - You must have the URL of Fidelis EDR server to which you will connect and perform automated operations and credentials to access that server.
@@ -894,7 +894,7 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "data": ""
 </code><code><br>}</code>
 ## Included playbooks
-The `Sample - fidelis-edr_dev - 1.2.0` playbook collection comes bundled with the Fidelis EDR connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR<sup>TM</sup> after importing the Fidelis EDR connector.
+The `Sample - fidelis-edr_dev - 1.1.0` playbook collection comes bundled with the Fidelis EDR connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR<sup>TM</sup> after importing the Fidelis EDR connector.
 
 - Get Alerts
 - Get Endpoints

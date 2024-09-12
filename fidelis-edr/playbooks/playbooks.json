@@ -4,13 +4,13 @@
     {
       "uuid": "bb0c3d98-632f-4eaf-961a-82d55613f2de",
       "@type": "WorkflowCollection",
-      "name": "Sample - Fidelis EDR - 1.2.0",
+      "name": "Sample - Fidelis EDR - 1.1.0",
       "description": "Fidelis Endpoint EDR detects endpoint activity in real time and retrospectively so you can accelerate your response and stop adversaries at the point of entry. This connector supports following actions Get Alerts, Get Endpoints, Detete Endpoints, etc",
       "visible": true,
       "image": null,
       "recordTags": [
         "Fidelis",
-        "fidelis-edr_dev"
+        "fidelis-edr"
       ],
       "workflows": [
         {
@@ -23,7 +23,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -71,8 +71,8 @@
                   "skip": "0",
                   "take": 1000
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_alerts",
                 "operationTitle": "Get Alerts",
                 "step_variables": {
@@ -106,7 +106,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -153,8 +153,8 @@
                 "params": {
                   "startIndex": 0
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_endpoints",
                 "operationTitle": "Get Endpoints",
                 "step_variables": {
@@ -188,7 +188,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -233,8 +233,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_endpoints_by_name",
                 "operationTitle": "Get Endpoint By Name",
                 "step_variables": {
@@ -268,7 +268,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -313,8 +313,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "delete_endpoint",
                 "operationTitle": "Delete Endpoint",
                 "step_variables": {
@@ -348,7 +348,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -395,8 +395,8 @@
                 "params": {
                   "take": "100"
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_playbooks",
                 "operationTitle": "Get Playbooks",
                 "step_variables": {
@@ -430,7 +430,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -479,8 +479,8 @@
                   "platformFilter": "All",
                   "sort": "name ascending"
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_playbooks_scripts",
                 "operationTitle": "Get Playbooks And Scripts",
                 "step_variables": {
@@ -514,7 +514,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -559,8 +559,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_playbooks_detail",
                 "operationTitle": "Get Playbooks Details",
                 "step_variables": {
@@ -594,7 +594,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -639,8 +639,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_api_info",
                 "operationTitle": "Get API version Information",
                 "step_variables": {
@@ -674,7 +674,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -719,8 +719,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_script_packages",
                 "operationTitle": "Get Script Packages",
                 "step_variables": {
@@ -754,7 +754,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -799,8 +799,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_script_packages_file",
                 "operationTitle": "Get Script Packages File",
                 "step_variables": {
@@ -834,7 +834,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -879,8 +879,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_script_packages_manifest",
                 "operationTitle": "Get Script Packages Manifest",
                 "step_variables": {
@@ -914,7 +914,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -959,8 +959,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_script_packages_metadata",
                 "operationTitle": "Get Script Packages Metadata",
                 "step_variables": {
@@ -994,7 +994,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1039,8 +1039,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_script_packages_template",
                 "operationTitle": "Get Script Packages Template",
                 "step_variables": {
@@ -1074,7 +1074,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1127,8 +1127,8 @@
                     "inputType": "text"
                   }
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "execute_script_package",
                 "operationTitle": "Execute Script Package",
                 "step_variables": {
@@ -1162,7 +1162,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1207,8 +1207,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "script_job_results",
                 "operationTitle": "Get Script Job Results",
                 "step_variables": {
@@ -1242,7 +1242,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1287,8 +1287,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "create_task",
                 "operationTitle": "Execute Task",
                 "step_variables": {
@@ -1322,7 +1322,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1370,8 +1370,8 @@
                   "skip": 0,
                   "take": 1000
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_installed_software",
                 "operationTitle": "Get Installed Software",
                 "step_variables": {
@@ -1405,7 +1405,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1453,8 +1453,8 @@
                   "offset": 0,
                   "limit": 1000
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_alert_responses",
                 "operationTitle": "Get Alert Responses",
                 "step_variables": {
@@ -1488,7 +1488,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1538,8 +1538,8 @@
                   "sort": 0,
                   "accessType": "0"
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_endpoints_by_search_query",
                 "operationTitle": "Get Endpoints By Search Query",
                 "step_variables": {
@@ -1573,7 +1573,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1618,8 +1618,8 @@
                 "name": "Fidelis EDR",
                 "config": "''",
                 "params": [],
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "get_job_status_by_job_id",
                 "operationTitle": "Get Job Status By Job ID",
                 "step_variables": {
@@ -1653,7 +1653,7 @@
           "tag": "#Fidelis EDR",
           "recordTags": [
             "Fidelis",
-            "fidelis-edr_dev"
+            "fidelis-edr"
           ],
           "isActive": false,
           "debug": false,
@@ -1705,8 +1705,8 @@
                   "questions": "",
                   "timeout_in_Seconds": 0
                 },
-                "version": "1.2.0",
-                "connector": "fidelis-edr_dev",
+                "version": "1.1.0",
+                "connector": "fidelis-edr",
                 "operation": "create_custom_task",
                 "operationTitle": "Create Custom Task",
                 "step_variables": {
